@@ -9,33 +9,12 @@ CREATE TABLE products (
     price: FLOAT(6,2) NOT NULL,
 );
 
-CREATE TABLE variants (
-    variant_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    variant_name: VARCHAR(15) NOT NULL,
-);
-
-CREATE TABLE variant_values (
-    value_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    product_id: SMALLINT UNSIGNED,
-    variant_name: VARCHAR(15),
-    value: VARCHAR(15),
-    CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES products
-);
-
 CREATE TABLE product_variants (
     product_variant_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    product_variant_name: VARCHAR(50),
+    size: TINYINT UNSIGNED NOT NULL,
+    color: VARCHAR(20) NOT NULL,
     CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES products,
-);
-
--- one product variant to many product variant details
-CREATE TABLE product_variant_details (
-    detail_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    product_variant_id: SMALLINT UNSIGNED,
-    value_id: SMALLINT UNSIGNED,
-    CONSTRAINT fk_product_variant_id FOREIGN KEY (product_variant_id) REFERENCES product_variants,
-    CONSTRAINT fk_value_id FOREIGN KEY (value_id) REFERENCES variant_values
 );
 
 CREATE TABLE users (
@@ -54,10 +33,40 @@ CREATE TABLE cart_item (
     CONSTRAINT fk_product_variant_id FOREIGN KEY (product_variant_id) REFERENCES product_variants
 );
 
-INSERT INTO products (name, description, brand, gender, price) VALUES 
-    ();
-INSERT INTO variants (variant_name) VALUES 
-    ('color'), 
-    ('size');
-INSERT INTO variant_value (product_id, variant_name, value) VALUES 
-    ();
+-- CREATE TABLE order (
+--     order_id
+-- );
+
+-- CREATE TABLE order_item (
+--     order_item_id
+-- );
+
+
+-- CREATE TABLE variants (
+--     variant_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+--     variant_name: VARCHAR(15) NOT NULL,
+-- );
+
+-- CREATE TABLE variant_values (
+--     value_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     product_id: SMALLINT UNSIGNED,
+--     variant_name: VARCHAR(15),
+--     value: VARCHAR(15),
+--     CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES products
+-- );
+
+-- CREATE TABLE product_variants (
+--     product_variant_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     product_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+--     product_variant_name: VARCHAR(50),
+--     CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES products,
+-- );
+
+-- CREATE TABLE product_variant_details (
+--     detail_id: SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     product_variant_id: SMALLINT UNSIGNED,
+--     value_id: SMALLINT UNSIGNED,
+--     CONSTRAINT fk_product_variant_id FOREIGN KEY (product_variant_id) REFERENCES product_variants,
+--     CONSTRAINT fk_value_id FOREIGN KEY (value_id) REFERENCES variant_values
+-- );
+

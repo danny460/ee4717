@@ -6,8 +6,8 @@
 </nav>
 <nav class="second-nav">
     <ul>
-        <li><a class="nav-link" href="/men">Men</a></li>
-        <li><a class="nav-link" href="/women">Women</a></li>
-        <li><a class="nav-link" href="/kids">Kids</a></li>
+        <li><a class="nav-link" href="/shop.php?for=men">Men</a></li>
+        <li><a class="nav-link" href="/shop.php?for=women">Women</a></li>
+        <li><a class="nav-link" href="/shop.php?for=kids">Kids</a></li>
     </ul>
 </nav>
