@@ -29,10 +29,12 @@
             <div class="filter-container float-left" id="filter">
                 <h1 class="headline">Filters</h2>
                 <span class="keyline-horizontal keyline-grey"></span>
-                <div id="filter-brand">
+                <h3>Brand</h3>
+                <!-- <span class="keyline-horizontal keyline-grey"></span> -->
+                <div class="filter-section" id="filter-brand">
                     <?php
                         if($brands->num_rows > 0){
-                            echo '<h2>Brand</h2>';
+                            
                             while($brand = $brands->fetch_assoc()){
                                 echo '
                                     <div class="check-box-wrapper"><label><input type="checkbox">'.$brand["brand"].'</label></div>
@@ -41,10 +43,11 @@
                         }
                     ?>
                 </div>
-                <div id="filter-color">
+                <h3>Color</h3>
+                <!-- <span class="keyline-horizontal keyline-grey"></span> -->
+                <div class="filter-section" id="filter-color">
                     <?php
                         if($colors->num_rows > 0){
-                            echo '<h2>Color</h2>';
                             while($color = $colors->fetch_assoc()){
                                 echo '
                                     <div class="color-cube bg-'.$color['color'].'"></div>
@@ -53,11 +56,11 @@
                         }
                     ?>
                 </div>    
-                <div id="filter-price">
+                <div class="filter-section" id="filter-price">
                         
                 </div>        
             </div>
-            <div class="product-list-containers" id="product-list">
+            <div class="product-list-container" id="product-list">
                 <?php 
                     if($products->num_rows > 0){
                         while($item = $products->fetch_assoc()){

@@ -56,7 +56,7 @@ div.container {
 }
 .keyline-horizontal {
     height: 1px;
-    width: 100;
+    width: 100%;
     display: block;
 }
 .keyline-grey {
@@ -246,8 +246,12 @@ Shopping List Page
     height: 100%;
 }
 .product-list-container {
-    width: 70%;
+    width: auto;
     height: 100%;
+    padding: 20px;
+}
+.filter-section {
+    padding: 5px;
 }
 .check-box-wrapper {
     display: block;
