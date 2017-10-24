@@ -64,8 +64,8 @@
                 <?php 
                     if($products->num_rows > 0){
                         while($item = $products->fetch_assoc()){
-                            echo '
-                                <div class="product-grid-wrapper">
+                            echo '   
+                                <div class="product-grid-wrapper" onclick="navToDetailPage(\''.$item["product_id"].'\')">
                                     <div class="product-image-wrapper">
                                         <img src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
                                     </div>
@@ -75,7 +75,8 @@
                                     <div class="product-title-wrapper">
                                         <h4>'.$item["price"].'</h4>
                                     </div>
-                                </div>';
+                                </div>
+                            ';
                         }
                     }else{
                         echo '
@@ -91,3 +92,8 @@
         include "partials/footer.php";
     ?>
 </body>
+<script type="text/javascript">
+    function navToDetailPage(productId){
+        window.location.href = '/product.php?id=' + productId;
+    }
+</script>

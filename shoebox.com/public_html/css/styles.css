@@ -156,20 +156,6 @@ ul.product-gallery-wrapper {
     overflow-x: auto;
 }
 
-ul.product-gallery-wrapper li {
-    margin: 0 20px;
-    padding: 50px 25px;
-    display: inline-block;
-    width: 300px;
-    height: 400px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    transition: .2s linear;
-}  
-
-ul.product-gallery-wrapper li:hover {
-    border: 1px solid black;
-}
 /**==================================
 Product Section
 ==================================**/
@@ -178,8 +164,21 @@ Product Section
 }
 .product-grid-wrapper {
     margin: 0 auto;
+    margin: 0 20px;
+    padding: 50px 25px;
     display: inline-block;
+    width: 300px;
+    height: 400px;
+    display: inline-block;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: .2s linear;
 }
+
+.product-grid-wrapper:hover {
+    border: 2px solid #313131;
+}
+
 .product-image-wrapper {
     overflow: hidden;
     width: 300px;
@@ -242,7 +241,8 @@ Shopping List Page
     padding: 20px;
     width: 30%;
     height: auto;
-    min-width: 100px;
+    min-width: 250px;
+    max-width: 250px;
     /* min-height: 500px; */
     height: 100%;
 }
@@ -261,9 +261,16 @@ Shopping List Page
     display: inline-block;
     width: 25px;
     height: 25px;
+    border: 1px solid #e5e5e5;
     border-radius: 2px;
     margin: 5px;
 }
+.color-cube:hover {
+    border: 1px solid black;
+}
+/* .color-cube:active {
+    border: 2px solid yellow;
+} */
 
 input[type="checkbox"] {
     border-radius: 2px;
