@@ -33,6 +33,7 @@ CREATE TABLE cart_item (
     CONSTRAINT fk_product_variant_id FOREIGN KEY (product_variant_id) REFERENCES product_variants
 );
 
+
 -- CREATE TABLE order (
 --     order_id
 -- );
