@@ -188,6 +188,16 @@ Product Section
     height: 300px;
 }
 
+
+.product-left-wrapper {
+    float: left;
+    margin: 30 30;
+}
+.product-right-wrapper {
+    margin-left: 400px;
+    height: 400px;
+}
+
 /**==================================
 Footer
 ==================================**/
