@@ -163,10 +163,9 @@ Product Section
     display: inline-block;
 }
 .product-grid-wrapper {
-    margin: 0 auto;
-    margin: 0 20px;
+    margin: 20px;
     padding: 50px 25px;
-    display: inline-block;
+    display: inline-block; 
     width: 300px;
     height: 400px;
     display: inline-block;
@@ -237,19 +236,18 @@ Cart Sid Nav
 /**=================================
 Shopping List Page
 ==================================**/
+.shop-container {
+    overflow: hidden;
+}
+.filter-column-container {
+    float: left;
+    width: 300px;
+}
 .filter-container {
-    padding: 20px;
-    width: 30%;
-    height: auto;
-    min-width: 250px;
-    max-width: 250px;
-    /* min-height: 500px; */
-    height: 100%;
+    margin-left: 20px;
 }
 .product-list-container {
-    width: auto;
-    height: 100%;
-    padding: 20px;
+    overflow:auto;
 }
 .filter-section {
     padding: 5px;
@@ -274,4 +272,15 @@ Shopping List Page
 
 input[type="checkbox"] {
     border-radius: 2px;
+}
+/**=================================
+Item Detail Page
+==================================**/
+.item-gallery-container {
+    float: left;
+    width: 50%;
+}
+
+.item-details-container {
+    overflow:auto;
 }
