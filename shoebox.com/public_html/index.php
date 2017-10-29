@@ -1,5 +1,6 @@
 <?php
-    include_once("./include/db.php");
+    session_start();
+    include_once("./include/db.php");    
     $mysqli = db_connect();
     $query_str = "SELECT * FROM items WHERE for=%who% LIMIT 5";
     $men_featured_products = $mysqli->query(str_replace("%who%","men",$query_str));

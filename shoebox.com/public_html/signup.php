@@ -23,20 +23,35 @@
                 echo '
                     <form action="/include/session.php" method="post">
                         <div>
+                            <label for="email">Email:</label>
+                            <input class="input-txt" type="email" name="email" value="">    
+                        </div>
+                    ';
+                echo '
+                        <div>
                             <label for="username">Username:</label>
                             <input class="input-txt" type="text" name="username" value="">    
                         </div>
+                    ';
+                if (isset($_GET['email_error'])){
+                    echo '<div><span style="color:red;">Email is already used.<a href="/login.php">Login instead</a></span></div>';   
+                }
+                echo '
                         <div>
                             <label for="password">Password:</label>
                             <input class="input-txt" type="password" name="password">
-                        </div>';
-                if (isset($_GET['login_error'])){
-                    echo '<div><span style="color:red;">Wrong username or password.</span></div>';   
+                        </div>
+                    ';
+                if (isset($_GET['user_error'])){
+                    echo '<div><span style="color:red;">Username is already used.</span></div>';   
                 }
-                echo '<input class="btn" type="submit" value="login" name="login">
+                echo '
+                        <input class="btn" type="submit" value="signup" name="signup">
                     </form>
                 ';
-                echo '<p>Do not have an account yet? <a class="link" href="/signup.php">Register here.</a></p>';
+                if (isset($_GET['error'])){
+                    echo '<div><span style="color:red;">Unknown error. Please retry later.</span></div>';   
+                }
             }
         ?>
         

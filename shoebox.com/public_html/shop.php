@@ -25,40 +25,42 @@
         <header>
             <?php include 'partials/nav.php'?>
         </header>
-        <div class="container">
-            <div class="filter-container float-left" id="filter">
-                <h1 class="headline">Filters</h2>
-                <span class="keyline-horizontal keyline-grey"></span>
-                <h3>Brand</h3>
-                <!-- <span class="keyline-horizontal keyline-grey"></span> -->
-                <div class="filter-section" id="filter-brand">
-                    <?php
-                        if($brands->num_rows > 0){
+        <div class="container shop-container">
+            <div class="filter-column-container">
+                <div class="filter-container" id="filter">
+                    <h1 class="headline">Filters</h2>
+                    <span class="keyline-horizontal keyline-grey"></span>
+                    <h3>Brand</h3>
+                    <!-- <span class="keyline-horizontal keyline-grey"></span> -->
+                    <div class="filter-section" id="filter-brand">
+                        <?php
+                            if($brands->num_rows > 0){
+                                
+                                while($brand = $brands->fetch_assoc()){
+                                    echo '
+                                        <div class="check-box-wrapper"><label><input type="checkbox">'.$brand["brand"].'</label></div>
+                                    ';
+                                }
+                            }
+                        ?>
+                    </div>
+                    <h3>Color</h3>
+                    <!-- <span class="keyline-horizontal keyline-grey"></span> -->
+                    <div class="filter-section" id="filter-color">
+                        <?php
+                            if($colors->num_rows > 0){
+                                while($color = $colors->fetch_assoc()){
+                                    echo '
+                                        <div class="color-cube bg-'.$color['color'].'"></div>
+                                    ';
+                                }
+                            }
+                        ?>
+                    </div>    
+                    <div class="filter-section" id="filter-price">
                             
-                            while($brand = $brands->fetch_assoc()){
-                                echo '
-                                    <div class="check-box-wrapper"><label><input type="checkbox">'.$brand["brand"].'</label></div>
-                                ';
-                            }
-                        }
-                    ?>
+                    </div>        
                 </div>
-                <h3>Color</h3>
-                <!-- <span class="keyline-horizontal keyline-grey"></span> -->
-                <div class="filter-section" id="filter-color">
-                    <?php
-                        if($colors->num_rows > 0){
-                            while($color = $colors->fetch_assoc()){
-                                echo '
-                                    <div class="color-cube bg-'.$color['color'].'"></div>
-                                ';
-                            }
-                        }
-                    ?>
-                </div>    
-                <div class="filter-section" id="filter-price">
-                        
-                </div>        
             </div>
             <div class="product-list-container" id="product-list">
                 <?php 
@@ -85,6 +87,7 @@
                     }
                 ?>
             </div>
+
         </div>
     </main>
     <?php
