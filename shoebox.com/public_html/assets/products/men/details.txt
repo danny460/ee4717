@@ -1,0 +1,33 @@
+//Format: name; description; price; color
+NIKE AIR FORCE 1 
+Air Force On The 1st High Tube Couple Sports Shoes 315123 Pure White
+S$76.00
+color: white
+
+NIKE ROSHERUN 
+Couple Shoes 511882
+S$76.00
+color:white/yellow/pink/red
+
+Nike Flyknit
+Nike Flyknit Max Braided Mesh Breathable Couple Running Shoes
+S$155.00 
+color: grey
+
+ADIDAS ADIPOWER WEIGHTLIFTING SHOES
+These Adidas adiPower Weightlifting Shoes are designed with a PU-coated Leather upper, this ensures durability throughout the shoe. 
+There are also breathable air mesh holes throughout the shoe which help to increase the level of airflow the foot receives. 
+This makes for a more cool, dry and comfortable wear.
+S$135.00 
+color: grey
+
+UNDER ARMOUR LIMITLESS TR TRAINING SHOES
+The Limitless TR Training Shoes offer a caged upper with a lightweight and breathable mesh that provides support and flexibility. 
+The mesh allows air to fully permeate the upper of the shoe increasing air flow, preventing moisture build up and keeps your feet cool and dry throughout intense workouts. 
+S$89.00 
+color: white/yellow/red
+
+NIKE ZOOM KDX
+With on-demand support and ultra-responsive cushioning that outperforms wherever you play, the Nike Zoom KDX Basketball Shoe is as versatile as KD himself.
+S$229
+color:White/black/grey
