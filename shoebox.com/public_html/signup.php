@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="/js/script.js"></script>
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Shoebox | Login</title>
+    <title>Shoebox | Signup</title>
 </head>
 <body>
     <main id="main">
