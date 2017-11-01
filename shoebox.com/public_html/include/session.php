@@ -1,5 +1,8 @@
 <?php
     include_once("db.php");
+    if (isset($_REQUEST['logout'])){
+        logout();
+    }
 
     if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])){
         login($_POST['username'], $_POST['password']);
@@ -38,6 +41,13 @@
                 header("location: /signup.php?error=1");
             }
         }
+    }
+
+    function logout(){
+        session_start();
+        session_destroy();
+        echo "<h1>You have been logged out. Redirecting to home page.</h1>";
+        header( "refresh: 3; url=/index.php" );                
     }
 
     function hasEmail($email){

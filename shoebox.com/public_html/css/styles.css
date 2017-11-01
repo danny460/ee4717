@@ -23,6 +23,29 @@ General
 .btn:focus {
     outline: 0;
 }
+.nav-link {
+    color: black;
+    font-weight: lighter;
+    font-size: 1em;
+    transition: .2s linear;
+}
+.nav-link:hover{
+    color: orangered;
+}
+.section-link {
+    font-size: 1em;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: white;
+    border-width: 0 0 1 0;
+    border-color: transparent;
+    border-style: solid;
+    transition: .2s linear;
+}
+.section-link:hover {
+    border-color: white;
+}
+
 html body { 
     margin: 0; 
 }
@@ -97,10 +120,7 @@ Navbar
     padding: 13px;
 }
 
-.top-nav .nav-link{
-    color: #2f2f2f;
-    font-weight: lighter;
-    font-size: 1em;
+.top-nav a{
     margin: 0 10px;
 }
 
@@ -115,8 +135,27 @@ Navbar
     font-weight: bolder;
 }
 
-.second-nav .nav-link{
-    color: white;
+.second-nav a {
+    padding: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 
