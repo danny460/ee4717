@@ -15,6 +15,7 @@
         <header>
             <?php include 'partials/nav.php'?>
         </header>
+        <div class="form-container">
         <?php
             if(isLoggedIn()){
                 echo '<h3>You have already logged in. Redirecting back to home page in <span id="counter">3</span> seconds...<br></h3>If not redirecting, <a style="color:blue;" href="/index.php">click here</a>';
@@ -33,13 +34,12 @@
                 if (isset($_GET['login_error'])){
                     echo '<div><span style="color:red;">Wrong username or password.</span></div>';   
                 }
-                echo '<input class="btn" type="submit" value="login" name="login">
-                    </form>
-                ';
-                echo '<p>Do not have an account yet? <a class="link" href="/signup.php">Register here.</a></p>';
+                echo '<input class="btn" type="submit" value="login" name="login">';
+                echo '<p>Do not have an account yet? <a class="nav-link" href="/signup.php">Register here.</a></p>';
+                echo '</form>';
             }
         ?>
-        
+        </div>
     </main>
     <?php
         include "partials/cart.php";
