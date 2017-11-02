@@ -1,10 +1,9 @@
 <?php
     include_once("db.php");
+    
     if (isset($_REQUEST['logout'])){
         logout();
-    }
-
-    if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])){
+    }else if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])){
         login($_POST['username'], $_POST['password']);
     }else if (isset($_POST['signup']) && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['password'])){
         signup($_POST['email'], $_POST['username'], $_POST['password']);
@@ -24,21 +23,21 @@
         if(hasEmail($email)){
             $error += 1;
         }
-        if(hasUser($email)){
+        if(hasUser($username)){
             $error += 2;
         }
         if($error === 1){
-            header("location: /signup.php?user_error=1");
+            header("location: /signup.php?email_error");
         }else if($error === 2){
-            header("location: /signup.php?email_error=1");
+            header("location: /signup.php?user_error");
         }else if($error === 3){
-            header("location: /signup.php?user_error=1&email_error=1");
+            header("location: /signup.php?user_error&email_error");
         }else{
             if(registerUser($email, $username, $password)){
                 createSession($username, $password);
                 header("location: /index.php");
             }else{
-                header("location: /signup.php?error=1");
+                // header("location: /signup.php?error=1");
             }
         }
     }
@@ -46,7 +45,7 @@
     function logout(){
         session_start();
         session_destroy();
-        echo "<h1>You have been logged out. Redirecting to home page.</h1>";
+        echo "<h2>You have been logged out. Redirecting to home page.</h2>";
         header( "refresh: 3; url=/index.php" );                
     }
 
@@ -54,6 +53,7 @@
         $mysqli = db_connect();
         $stmt = "SELECT * from users where email = '".$email."';";
         $result = $mysqli->query($stmt);
+        echo '<h1>has email:'.$result->num_rows.'</h1>';
         return $result->num_rows === 1;
     }
 
@@ -61,6 +61,7 @@
         $mysqli = db_connect();
         $stmt = "SELECT * from users where username = '".$username."';";
         $result = $mysqli->query($stmt);
+        echo '<h1>has users:'.$result->num_rows.'</h1>';
         return $result->num_rows === 1;
     }
 
@@ -76,7 +77,12 @@
         $mysqli = db_connect();
         $hash = hash_SHA256($password);
         $insert_stmt = "INSERT INTO users (user_id, email, username, password) VALUES ( UUID(), '".$email."','".$username."','".$hash."');";
-        return $mysqli->query($insert_stmt);
+        if ($mysqli->query($insert_stmt)){
+            return true;
+        }else{
+            echo ''.$mysqli->error;
+            return false;
+        }
     }
 
     function createSession($username, $userid){

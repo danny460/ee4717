@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("./include/db.php");
     $mysqli = db_connect();
     $product_id = $_GET["id"];
