@@ -23,13 +23,12 @@
             }else{
                 echo '
                     <form action="/include/session.php" method="post">
+                        <h2>LOG IN</h2>
                         <div>
-                            <label for="username">Username:</label>
-                            <input class="input-txt" type="text" name="username" value="">    
+                            <input class="input-txt" type="text" name="username" placeholder="Username">    
                         </div>
                         <div>
-                            <label for="password">Password:</label>
-                            <input class="input-txt" type="password" name="password">
+                            <input class="input-txt" type="password" name="password" placeholder="Password">
                         </div>';
                 if (isset($_GET['login_error'])){
                     echo '<div><span style="color:red;">Wrong username or password.</span></div>';   

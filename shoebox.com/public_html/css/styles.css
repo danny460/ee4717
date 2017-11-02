@@ -5,6 +5,9 @@ html,body,main {
     width: 100%;
     margin: 0;
 }
+.warning {
+    color: red;
+}
 .btn, a:hover {
     cursor: pointer;
 }
@@ -13,16 +16,14 @@ html,body,main {
     font-size: 14px;
     padding: 10px 10px;
     border-radius: 3px;
-    border-width: 1px; 
-    border-style: solid;
-    border-color: black;
-    color: white;
-    background-color: black;
+    border: 2px orangered solid;
+    color: orangered;
+    background-color: transparent;
     transition: .2s linear;
 }
 .btn:hover{
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: orangered;
 }
 .btn:focus {
     outline: 0;
@@ -61,6 +62,7 @@ li {
     display: inline-block;
 }
 ul { 
+    margin: 0;
     padding: 0;
 }
 .float-left {
@@ -113,12 +115,8 @@ Navbar
 ==================================**/
 .top-nav {
     background-color: white;
-    height: 30px;
-    padding: 0 10px;
-}
-
-.top-nav li{
-    padding: 13px;
+    padding: 20px 10px;
+    line-height: 12px;
 }
 
 .top-nav a{
@@ -151,12 +149,16 @@ Navbar
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
+    padding: 12px 6px 0px 0px;
     z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content, .dropdown-content li {
     display: block;
+}
+
+.dropdown-content li {
+    margin: 20px 0;
 }
 
 
@@ -373,18 +375,35 @@ Login/Signup Page
 }
 .form-container form {
     width: 50%;
-    min-width: 300px;
-    margin: 20px auto;
+    min-width: 150px;
+    max-width: 300px;
+    margin: 100px auto;
 }
 .form-container form lable, .form-container form input {
     width: 100%;
     display: block;
 }
-.form-container form input {
-    height: 30px;
+.hint-txt, .warning-txt {
+    font-size: .7em;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+.warning-txt {
+    color: red;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 1em;
+    font-weight: light;
+    height: 40px;
     padding: 0 5px;
-    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.form-container form input{
+    margin: 10px 0;
+}
+
