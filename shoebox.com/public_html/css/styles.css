@@ -7,7 +7,7 @@ html,body,main {
 }
 body {
     position: relative;
-    padding-bottom: 12rem;
+    padding-bottom: 20rem;
 }
 .hidden {
     display: none;
@@ -29,6 +29,14 @@ body {
     color: white;
     background-color: orangered;
     transition: .3s linear;
+}
+.btn.btn-secondary{
+    color: orangered;
+    background-color: white;
+}
+.btn.btn-secondary:hover{
+    background-color: orangered;
+    color: white;
 }
 .btn:hover {
     color: orangered;
@@ -110,6 +118,45 @@ div.container {
 }
 .bg-green {
     background-color: lightgreen;
+}
+
+.selection-cube {
+    display: inline-block;
+    margin-right: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius:4px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+    float:left;
+}
+.selection-cube:hover {
+    opacity: 0.9;
+}
+
+.selection-cube label {
+    float: left;
+    width: 1.7em;
+}
+.selection-cube label span {
+    text-align:center;
+    padding: 3px 0px;
+    display:block;
+}
+
+.selection-cube label input {
+    position:absolute;
+    top: -20px;
+}
+
+.selection-cube input + span {
+    visibility: hidde;
+    opacity: 0;
+}
+
+.selection-cube input:checked + span {
+    visibility: visible;
+    opacity: 1;
 }
 .headline{
     text-transform: uppercase;
@@ -423,21 +470,7 @@ Shopping List Page
 .check-box-wrapper {
     display: block;
 }
-.color-cube {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    border: 1px solid #e5e5e5;
-    border-radius: 2px;
-    margin: 0 5 0 0;
-}
-.color-cube:hover {
-    cursor: pointer;
-    border: 1px solid black;
-}
-/* .color-cube:active {
-    border: 2px solid yellow;
-} */
+
 
 input[type="checkbox"] {
     border-radius: 2px;
@@ -510,4 +543,3 @@ input[type="text"], input[type="email"], input[type="password"] {
 .form-container form input{
     margin: 10px 0;
 }
-
