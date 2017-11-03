@@ -5,6 +5,14 @@ html,body,main {
     width: 100%;
     margin: 0;
 }
+body {
+    position: relative;
+    padding-bottom: 12rem;
+}
+.hidden {
+    display: none;
+    opacity: 0;
+}
 .warning {
     color: red;
 }
@@ -12,22 +20,24 @@ html,body,main {
     cursor: pointer;
 }
 .btn{
+    height: 40px;
     text-transform: uppercase;
     font-size: 14px;
     padding: 10px 10px;
+    border: 2px solid orangered;
     border-radius: 3px;
-    border: 2px orangered solid;
-    color: orangered;
-    background-color: transparent;
-    transition: .2s linear;
-}
-.btn:hover{
     color: white;
     background-color: orangered;
+    transition: .3s linear;
+}
+.btn:hover {
+    color: orangered;
+    background-color: white;
 }
 .btn:focus {
     outline: 0;
 }
+
 .nav-link {
     color: black;
     font-weight: lighter;
@@ -72,7 +82,10 @@ ul {
     float:right;
 }
 .inline {
-    display: inline
+    display: inline;
+}
+.inline-block{
+    display: inline-block;
 }
 main {
     width: 100%;
@@ -305,21 +318,34 @@ footer .fa:hover {
 footer small{
     color: #7b7a7a;
 }
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
 /**=================================
 Cart Sid Nav
 ==================================**/
-.cart-side-nav {
+.cart-side-nav{
     height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
+    width: 300px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
-    right: 0;
-    /* padding: 10px; */
-    background-color: #ffffff; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    right: -300px;
+    background-color: #ffffff; 
+    overflow-x: hidden;
+    padding-top: 60px; 
+    transition: 0.5s; 
+}
+
+.cart-side-nav.open {
+    box-shadow: -8px -1px 20px 5px rgba(53, 53, 53, 0.16);
 }
 
 .cart-side-nav .closebtn {
@@ -331,15 +357,48 @@ Cart Sid Nav
     color: black;
 }
 
-.sidenav-footer {
+.sidenav-container {
     position: absolute;
-    height: 100px;
-    bottom: 100px;
-    right: 0;
+    top: 60px;
+    bottom: 0;
+    padding: 20px;
+    width: 100%;
 }
 
-.sidenav-container {
-    margin: 5px 10px;
+.order-container {
+    overflow-y: scroll;
+    height: 70%;
+}
+.order-container ul {
+    padding: 30px 0;
+}
+
+.item-container {
+    margin: 10px;
+    width: 100%;
+}
+
+.item-image-wrapper {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.item-image-wrapper img {
+    width: 100px;
+}
+
+#item-info {
+    float: right;
+    width: 50%;
+    margin-right: 20px;
+}
+#item-info .hint-txt {
+    margin: 4px 0px;
+}
+#item-info input{
+    margin: 6px 0px;
+    width: 50px;
 }
 
 /**=================================
