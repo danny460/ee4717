@@ -1,0 +1,36 @@
+//Format: name; description; price; color
+INOV-8 FASTLIFT 370 WOMEN'S WEIGHTLIFTING SHOES
+Committed to providing you with a functional lightweight platform, inducing supreme power transfer, 
+the Fastlift 370 Weightlifting Shoes supply that much needed advantage before the lift.
+S$147.00
+color: pink
+
+NIKE ROSHERUN 
+Couple Shoes 511882
+S$76.00
+color:white/yellow/pink/red
+
+ASICS GEL FIT SANA 3 WOMEN'S FITNESS SHOES 
+Mesh uppers will encase each foot in breathable comfort. 
+Perforations in the fabric increase airflow; creating a better, healthier environment for your feet to thrive in. 
+S$97.00
+color: pink
+
+ADIDAS CRAZY POWER WOMEN'S TRAINING SHOES 
+The upper of the Adidas Crazy Power Women's Training Shoes are built with mixed materials 
+and an RPU protective cage for added durability and support while training. 
+S$110.00
+color: white
+
+UNDER ARMOUR COOLSWITCH RN WOMEN'S TRAINING SHOES
+The upper of these Women's Training Shoes feature a Coolswitch lining that uses an exclusive coating on the inside that pulls heat away from your foot, 
+making you feel cooler and able to run for longer.
+S$68.00
+color: blue/black/yellow
+
+UNDER ARMOUR CHARGED CORE WOMEN'S TRAINING SHOES
+The Under Armour Charged Core Women's Training Shoes are constructed with an abrasion-resistant upper with a synthetic 
+overlay for maximum stability and durability. 
+S$72.00
+color: white/black
+
