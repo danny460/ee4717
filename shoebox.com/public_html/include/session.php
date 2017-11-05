@@ -11,7 +11,7 @@
 
     function login($username, $password){
         if(checkCredential($username, $password)){
-            createSession($username, $password);
+            createSession($username, getUserID($username));
             header("location: /index.php");
         }else{
             header("location: /login.php?login_error=1");
@@ -34,10 +34,10 @@
             header("location: /signup.php?user_error&email_error");
         }else{
             if(registerUser($email, $username, $password)){
-                createSession($username, $password);
+                createSession($username, getUserID($username));
                 header("location: /index.php");
             }else{
-                // header("location: /signup.php?error=1");
+                header("location: /signup.php?error=1");
             }
         }
     }
@@ -47,6 +47,45 @@
         session_destroy();
         echo "<h2>You have been logged out. Redirecting to home page.</h2>";
         header( "refresh: 3; url=/index.php" );                
+    }
+
+    function promptLogin(){
+        echo '
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <form action="./login.php" method="GET"> 
+                        <span class="close">&times;</span>
+                        <h3>You need to login first.</h3><br>
+                        <input class="btn" type="submit" name="redirect" value="Login">
+                    </form>
+                </div>
+            </div>
+            <script>
+                var modal = document.getElementById("myModal");
+                var btn = document.getElementById("myBtn");
+                var span = document.getElementsByClassName("close")[0];
+                modal.style.display = "block";
+                span.onclick = function() {
+                    modal.remove();
+                }
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.remove();
+                    }
+                }
+            </script>
+        ';
+    }
+
+    function getUserID($username){
+        $mysqli = db_connect();
+        $stmt = "SELECT user_id from users where username = '$username'";
+        $result = $mysqli->query($stmt);
+        if($result->num_rows === 1){
+            $user = $result->fetch_assoc();
+            return $user["user_id"];
+        }
+        return null;
     }
 
     function hasEmail($email){

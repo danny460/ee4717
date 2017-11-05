@@ -146,17 +146,30 @@ div.container {
 
 .selection-cube label input {
     position:absolute;
-    top: -20px;
+    top: -1000px;
+    opacity: 0;
 }
 
 .selection-cube input + span {
-    visibility: hidde;
+    visibility: hidden;
     opacity: 0;
 }
 
 .selection-cube input:checked + span {
     visibility: visible;
     opacity: 1;
+}
+.selection-cube.size-cube{
+    width: 27px;
+    height: 27px;
+}
+.selection-cube.size-cube input + span {
+    visibility: visible;
+    opacity: 1;
+}
+.selection-cube.size-cube input:checked + span {
+    background-color: black;
+    color: white;
 }
 .headline{
     text-transform: uppercase;
@@ -447,6 +460,12 @@ Cart Sid Nav
     margin: 6px 0px;
     width: 50px;
 }
+#cart-item-container{
+    padding: 20px 5px;
+    border-width: 0 0 1 0;
+    border-style: solid;
+    border-color: lightgray;
+}
 
 /**=================================
 Shopping List Page
@@ -478,15 +497,6 @@ input[type="checkbox"] {
 /**=================================
 Item Detail Page
 ==================================**/
-.item-gallery-container {
-    float: left;
-    width: 50%;
-}
-
-.item-details-container {
-    overflow: auto;
-}
-
 .size-cube {
     display: inline-block;
     margin: 0 5 0 0;
@@ -500,9 +510,19 @@ Item Detail Page
 .cube-content {
     margin: 5px;
 }
-
-.option-container {
-    padding: 10 0;
+#image-row {
+    margin: 20px;
+    margin-top: 100px;
+}
+#image-row img{
+    border: 1px solid transparent;
+}
+#image-row img:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
+#title-row,#color-row,#size-row,#quantity-row,#submit-row {
+    margin: 20px 0;
 }
 /**===
 Login/Signup Page
@@ -542,4 +562,43 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 .form-container form input{
     margin: 10px 0;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    min-width: 300px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
