@@ -2,21 +2,27 @@
     $hasItem = false;
     include_once("./include/db.php");
     $mysqli = db_connect();
-    // $updateQuery = "UPDATE orders SET size = $size, color = $color, quantity = $quantity where item_id = $item_id";
-    // $result = $mysqli->query($updateQuery);
+    $items = dbGetCartItems($_SESSION["userid"]);
+    if($items->num_rows>0){
+        $hasItem = true;
+    }
 ?>
-<!-- <meta http-equiv="refresh" content="10" > -->
-
 <div id="cartSidenav" class="cart-side-nav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div id="content" class="sidenav-container">
         <div class="title-container">
-            <h2>Shopping Cart</h2>
             <?php
                 if (!$hasItem){
-                    echo '<p><span class="hint-txt">Your shopping cart is empty </span>😢</p>';
+                    echo '
+                        <h1>Shopping Cart</h1>
+                        <p><span class="hint-txt">Your shopping cart is empty </span>😢</p>
+                    ';
                 }else{
-                    echo "";
+                    echo '
+                        <h3>
+                            Shopping Cart <small>('.$items->num_rows.')</small>
+                        </h3>
+                    ';
                 }
             ?>
         </div>
@@ -37,9 +43,9 @@
                                                     </div>
                                                     <div class="col-xs-7">
                                                         <h6 class="text-warning">'.$item["product_name"].'</h6>
-                                                        <h6 id="size">Size:<small>'.$item["size"].'</small></h6>
-                                                        <h6 id="color">Color:<small>'.$item["color"].'</small></h6>
-                                                        <h6 id="qty">Quantity:<small>'.$item["quantity"].'</small></h5>
+                                                        <h6 id="size">Size:  '.$item["size"].'</h6>
+                                                        <h6 id="color">Color:  '.$item["color"].'</h6>
+                                                        <h6 id="qty">Quantity:  '.$item["quantity"].'</h5>
                                                         <input class="btn btn-secondary" type="button" name="modify" value="Edit" onclick="editItem(\'e\', this)">
                                                     </div>
                                                 </div>
