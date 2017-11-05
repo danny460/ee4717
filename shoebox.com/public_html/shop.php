@@ -2,8 +2,6 @@
     session_start();
     include_once("./include/db.php");
     $mysqli = db_connect();
-    print_r($_POST);
-    print(count($_POST["colors"]));
     // gender filter
     $for = $_GET["for"];
     if ($for == null) {
