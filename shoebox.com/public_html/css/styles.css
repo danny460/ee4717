@@ -6,8 +6,9 @@ html,body,main {
     margin: 0;
 }
 body {
+    min-height: 100%;
     position: relative;
-    padding-bottom: 20rem;
+    padding-bottom: 300px;
 }
 .hidden {
     display: none;
@@ -419,9 +420,9 @@ Cart Sid Nav
 
 .sidenav-container {
     position: absolute;
-    top: 60px;
+    top: 30px;
     bottom: 0;
-    padding: 20px;
+    padding: 0 20px;
     width: 100%;
 }
 

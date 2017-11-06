@@ -46,7 +46,9 @@
                                                         <h6 id="size">Size:  '.$item["size"].'</h6>
                                                         <h6 id="color">Color:  '.$item["color"].'</h6>
                                                         <h6 id="qty">Quantity:  '.$item["quantity"].'</h5>
-                                                        <input class="btn btn-secondary" type="button" name="modify" value="Edit" onclick="editItem(\'e\', this)">
+                                                        <input type="hidden" name="item_id" value="'.$item["item_id"].'">
+                                                        <input type="hidden" name="product_id" value="'.$item["product_id"].'">
+                                                        <input class="btn btn-secondary" type="button" name="modify" value="edit" onclick="editItem(\'e\', this)">
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,23 +68,11 @@
     </div>
 </div>
 <script>
+    var orginalContainer = null;
     function editItem(dummy, src, itemId){
-        var container = src.parentNode;
-        var pElements = container.getElementsByTagName("p");
-        var pSize = pElements[1];
-        var pColor = pElements[2];
-        var pQty = pElements[3];
-        pSize.className += " hidden";
-        pColor.className += " hidden";
-        pQty.className += " hidden";
-        src.className += "hidden";
-        var updateBtn = document.createElement("input");
-        updateBtn.setAttribute("type", "button");
-        updateBtn.setAttribute("name", "update");
-        updateBtn.setAttribute("value", "update");
-        updateBtn.addEventListener("click", function(){
-            updateItem(container);
-        });
+        orginalContainer = src.parentNode;
+        orginalContainer.style.display = "none";
+        var parentContainer = orginalContainer.parentNode;
         var xmlReq = new XMLHttpRequest();
         xmlReq.onreadystatechange = function(){
             if(this.readyState === 4 && this.status === 200){
@@ -90,15 +80,19 @@
                 var dummyHTML = document.createElement("html");
                 dummyHTML.innerHTML = xmlReq.responseText;
                 var responseEl = dummyHTML.getElementsByTagName("div")[0];
-                console.log(responseEl);
-                container.appendChild(responseEl);
-                container.appendChild(updateBtn);
+                parentContainer.appendChild(responseEl);
             }
         };        
-        xmlReq.open("POST", '/partials/item-edit.php?item_id=1234');
+        xmlReq.open("POST", '/include/item-edit.php?item_id=1234');
         xmlReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlReq.send();
     }  
+
+    function cancelEdit(dummy, src){
+        console.log("HELLO");
+        src.parentNode.remove();
+        orginalContainer.style.display = "block";
+    }
     
     function updateItem(container){
         var pElements = container.getElementsByTagName("p");

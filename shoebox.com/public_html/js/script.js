@@ -10,7 +10,7 @@ function closeNav() {
 }
 
 //test
-setTimeout(function(){
-    openNav();
-}, 200);
+// setTimeout(function(){
+//     openNav();
+// }, 200);
 
