@@ -7,7 +7,7 @@ html,body,main {
 }
 body {
     position: relative;
-    padding-bottom: 12rem;
+    padding-bottom: 20rem;
 }
 .hidden {
     display: none;
@@ -29,6 +29,14 @@ body {
     color: white;
     background-color: orangered;
     transition: .3s linear;
+}
+.btn.btn-secondary{
+    color: orangered;
+    background-color: white;
+}
+.btn.btn-secondary:hover{
+    background-color: orangered;
+    color: white;
 }
 .btn:hover {
     color: orangered;
@@ -110,6 +118,58 @@ div.container {
 }
 .bg-green {
     background-color: lightgreen;
+}
+
+.selection-cube {
+    display: inline-block;
+    margin-right: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius:4px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+    float:left;
+}
+.selection-cube:hover {
+    opacity: 0.9;
+}
+
+.selection-cube label {
+    float: left;
+    width: 1.7em;
+}
+.selection-cube label span {
+    text-align:center;
+    padding: 3px 0px;
+    display:block;
+}
+
+.selection-cube label input {
+    position:absolute;
+    top: -1000px;
+    opacity: 0;
+}
+
+.selection-cube input + span {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.selection-cube input:checked + span {
+    visibility: visible;
+    opacity: 1;
+}
+.selection-cube.size-cube{
+    width: 27px;
+    height: 27px;
+}
+.selection-cube.size-cube input + span {
+    visibility: visible;
+    opacity: 1;
+}
+.selection-cube.size-cube input:checked + span {
+    background-color: black;
+    color: white;
 }
 .headline{
     text-transform: uppercase;
@@ -400,6 +460,12 @@ Cart Sid Nav
     margin: 6px 0px;
     width: 50px;
 }
+#cart-item-container{
+    padding: 20px 5px;
+    border-width: 0 0 1 0;
+    border-style: solid;
+    border-color: lightgray;
+}
 
 /**=================================
 Shopping List Page
@@ -423,21 +489,7 @@ Shopping List Page
 .check-box-wrapper {
     display: block;
 }
-.color-cube {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    border: 1px solid #e5e5e5;
-    border-radius: 2px;
-    margin: 0 5 0 0;
-}
-.color-cube:hover {
-    cursor: pointer;
-    border: 1px solid black;
-}
-/* .color-cube:active {
-    border: 2px solid yellow;
-} */
+
 
 input[type="checkbox"] {
     border-radius: 2px;
@@ -445,15 +497,6 @@ input[type="checkbox"] {
 /**=================================
 Item Detail Page
 ==================================**/
-.item-gallery-container {
-    float: left;
-    width: 50%;
-}
-
-.item-details-container {
-    overflow: auto;
-}
-
 .size-cube {
     display: inline-block;
     margin: 0 5 0 0;
@@ -467,9 +510,19 @@ Item Detail Page
 .cube-content {
     margin: 5px;
 }
-
-.option-container {
-    padding: 10 0;
+#image-row {
+    margin: 20px;
+    margin-top: 100px;
+}
+#image-row img{
+    border: 1px solid transparent;
+}
+#image-row img:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
+#title-row,#color-row,#size-row,#quantity-row,#submit-row {
+    margin: 20px 0;
 }
 /**===
 Login/Signup Page
@@ -511,3 +564,41 @@ input[type="text"], input[type="email"], input[type="password"] {
     margin: 10px 0;
 }
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    min-width: 300px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

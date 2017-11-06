@@ -1,22 +1,28 @@
 <?php
     $hasItem = false;
-    include_once("/include/db.php");
+    include_once("./include/db.php");
     $mysqli = db_connect();
-    $updateQuery = "UPDATE orders SET size = $size, color = $color, quantity = $quantity where item_id = $item_id";
-    $result = $mysqli->query($updateQuery);
+    $items = dbGetCartItems($_SESSION["userid"]);
+    if($items->num_rows>0){
+        $hasItem = true;
+    }
 ?>
-<!-- <meta http-equiv="refresh" content="10" > -->
-
 <div id="cartSidenav" class="cart-side-nav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div id="content" class="sidenav-container">
         <div class="title-container">
-            <h2>Shopping Cart</h2>
             <?php
                 if (!$hasItem){
-                    echo '<p><span class="hint-txt">Your shopping cart is empty </span>😢</p>';
+                    echo '
+                        <h1>Shopping Cart</h1>
+                        <p><span class="hint-txt">Your shopping cart is empty </span>😢</p>
+                    ';
                 }else{
-                    echo "";
+                    echo '
+                        <h3>
+                            Shopping Cart <small>('.$items->num_rows.')</small>
+                        </h3>
+                    ';
                 }
             ?>
         </div>
@@ -24,23 +30,30 @@
             <div class="order-container">
                 <ul>
                     <?php
-                        for($i = 0; $i < 10; $i++){
-                            echo '
-                            <li>
-                                <div class="item-container">
-                                    <div class="item-image-wrapper inline">
-                                        <img src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="" srcset="">
-                                    </div>
-                                    <div id="item-info" class="inline">
-                                        <p class="hint-txt">Product Name Maybe too long but whatever</p>
-                                        <p id="size" class="hint-txt">Size: $size</p>
-                                        <p id="color" class="hint-txt" >Color: $color</p>
-                                        <p id="qty" class="hint-txt" >Quantity: $quantity</p>
-                                        <input type="button" name="modify" onclick="editItem(\'e\', this)">
-                                    </div>
-                                </div>
-                            </li>
-                            ';
+                        $items = dbGetCartItems($_SESSION["userid"]);
+                        if($items->num_rows>0){
+                            while($item = $items->fetch_assoc()){
+                                echo '
+                                    <li>
+                                        <div id="cart-item-container" class="container">
+                                            <div class="col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-xs-5">
+                                                        <img src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="" class="img-fulid" style="max-width:100%;height:auto;">
+                                                    </div>
+                                                    <div class="col-xs-7">
+                                                        <h6 class="text-warning">'.$item["product_name"].'</h6>
+                                                        <h6 id="size">Size:  '.$item["size"].'</h6>
+                                                        <h6 id="color">Color:  '.$item["color"].'</h6>
+                                                        <h6 id="qty">Quantity:  '.$item["quantity"].'</h5>
+                                                        <input class="btn btn-secondary" type="button" name="modify" value="Edit" onclick="editItem(\'e\', this)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ';
+                            }
                         }
                     ?>
                 </ul>

@@ -1,23 +1,39 @@
 <?php
     session_start();
     include_once("./include/db.php");
+    include_once("./include/session.php");
     $mysqli = db_connect();
-    $product_id = $_GET["id"];
-    if ($product_id == null) {
-        $product_id = "men";
+    if (!isset($_GET["id"])) {
+        header('location:/shop.php');
     }
-    $product_query = "SELECT * FROM products WHERE product_id = ".$product_id.";";
-    $color_query = "SELECT DISTINCT color FROM product_variants WHERE product_id = ".$product_id.";";
-    $size_query = "SELECT DISTINCT size FROM product_variants WHERE product_id = ".$product_id.";";
+    $product_id = $_GET["id"];
+    if(isset($_POST["submit"]) && isset($_POST["color"]) && isset($_POST["size"]) && isset($_POST["qty"]) && $_POST["qty"] > 0){
+        if(isLoggedIn()){
+            dbAddToCart($_SESSION["userid"], $product_id,$_POST["color"], $_POST["size"], $_POST["qty"]);
+            unset($_POST["submit"]);
+        }else{
+            promptLogin();
+        }
+    };
+    $product_query = "SELECT * FROM products WHERE product_id = $product_id;";
+    $color_query = "SELECT DISTINCT color FROM product_variants WHERE product_id = $product_id;";
+    $size_query = "SELECT DISTINCT size FROM product_variants WHERE product_id = $product_id ORDER BY size;";
     $product_result = $mysqli->query($product_query);
     $color_result = $mysqli->query($color_query);
-    $size_result = $mysqli->query($size_query);    
+    $size_result = $mysqli->query($size_query);
+    
 ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="/css/styles.css">
     <title>SHOEBOX | Shop</title>
 </head>
@@ -25,47 +41,78 @@
     <main id="main">
         <header>
             <?php include 'partials/nav.php'?>
-        </header>    
-        <div class="container shop-container">
-            <div class="item-gallery-container">
-                <div id="product-image-wrapper" class="product-image-wrapper image-wrapper-responsive">
-                    <img id="product-image" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="">
+        </header>
+        
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div id="item-gallery-container" class="col-sm-4">
+                        <div class="row" id="image-row">
+                            <a href="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg">
+                                <img class="img-fluid" style="max-width:100%;height:auto;" id="product-image" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="">
+                            </a>
+                        </div>    
+                    </div>
+                    <div id="item-details-container" class="col-sm-8">
+                            <?php echo  '<form action="product.php?id='.$product_id.'" method="post">'; ?>
+                            <?php
+                                if($product_result->num_rows == 1){
+                                    $item = $product_result->fetch_assoc();
+                                    echo '
+                                        <div id="title-row" class="col-sm-8">
+                                            <h1>'.$item['product_name'].'</h1>
+                                            <p>'.$item['description'].'</p>
+                                        <div>
+                                    ';
+                                }
+                                echo '<div id="color-row" class="col-sm-8">';
+                                echo '<h5>Color</h5>';
+                                if($color_result->num_rows > 0){
+                                    while($color = $color_result->fetch_assoc()){
+                                        echo '
+                                            <div class="selection-cube bg-'.$color['color'].'">
+                                                <label>
+                                                    <input type="radio" value="'.$color['color'].'" name="color"
+                                        ';
+                                        if(isset($_POST["colors"])){
+                                            if(in_array($color["color"], $_POST["colors"])){
+                                                echo ' checked ';
+                                            }
+                                        }           
+                                        echo '
+                                            ><span>&#x2714;</span>
+                                                </label>
+                                            </div>
+                                        ';
+                                    }
+                                }
+                                echo '</div>';
+                                echo '<div id="size-row" class="col-sm-8">';
+                                echo '<h5>Size</h5>';
+                                if($size_result->num_rows > 0){
+                                    while($item = $size_result->fetch_assoc()){
+                                        echo '
+                                            <div class="selection-cube size-cube bg-white">
+                                                <label>
+                                                    <input type="radio" value="'.$item['size'].'" name="size"><span>'.$item['size'].'</span>
+                                                </label>
+                                            </div>
+                                        ';
+                                    }
+                                }
+                                echo '</div>'
+                            ?>
+                                <div id="quantity-row" class="col-sm-8">
+                                    <h5>Quantity</h5>
+                                    <input type="number" value="0" name="qty">
+                                </div>
+                                <div id="submit-row" class="col-sm-8">
+                                    <input class="btn" type="submit" value="add to cart" name="submit">
+                                </div>
+                            </form>
+                    </div>
                 </div>
             </div>
-            <div class="item-details-container">
-                <form action="product.php" method="post">
-                <?php 
-                    if($product_result->num_rows == 1){
-                        $item = $product_result->fetch_assoc();
-                        echo '<h1>'.$item['product_name'].'</h1>';
-                        echo '<p>'.$item['description'].'</p>';
-                    }
-                    echo '<div class="option-container">';
-                    echo '<h4>Color</h4>';
-                    if($color_result->num_rows > 0){
-                        while($color = $color_result->fetch_assoc()){
-                            echo '
-                                <div class="color-cube bg-'.$color['color'].'"></div>
-                            ';
-                        }
-                    }
-                    echo '</div>';
-                    echo '<div class="option-container">';
-                    echo '<h4>Size</h4>';
-                    if($size_result->num_rows > 0){
-                        while($size = $size_result->fetch_assoc()){
-                            echo '<div class="size-cube"><p class="cube-content">'.$size['size'].'</p></div>';
-                        }
-                    }
-                    echo '</div>'
-                ?>
-                <div class="option-container">
-                    <input type="button" value="ADD TO CART">
-                </div>
-                
-                </form>
-            </div>
-            
         </div>
     </main>
     <?php
@@ -73,10 +120,3 @@
         include "partials/footer.php";
     ?>
 </body>
-<script>
-    var imgWrapper = document.getElementById("product-image-wrapper");
-    var img = document.getElementById("product-image");
-    window.addEventListener('resize', function(){
-        var wWidth = window.innerWidth;
-    });
-</script>
