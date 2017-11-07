@@ -54,95 +54,158 @@
         <header>
             <?php include 'partials/nav.php'?>
         </header>
-        <div class="container shop-container">
-            <div class="filter-column-container">
-                <div class="filter-container" id="filter">
-                    <?php
-                        echo '<form action="/shop.php?for='.$for.'" method="post">';
-                    ?>                        
-                    <input class="btn btn-secondary float-right inline" type="submit" value="apply" name="filter">
-                    <input class="btn btn-secondary float-right inline" style="margin-right:15px;" type="submit" value="reset" name="reset">
-                    <h1 class="headline">Filters</h2>
-                    
-                    <span class="keyline-horizontal keyline-grey"></span>
-                    <h3>Brand</h3>
-                    <!-- <span class="keyline-horizontal keyline-grey"></span> -->
-                    <div class="filter-section" id="filter-brand">
-                        <?php
-                            if($brands->num_rows > 0){
-                                
-                                while($brand = $brands->fetch_assoc()){
-                                    echo '
-                                        <div class="check-box-wrapper"><label><input type="checkbox" name="brands[]" value="'.$brand["brand"].'"
-                                    ';
-                                    if(isset($_POST["brands"])){
-                                        if(in_array($brand["brand"], $_POST["brands"])){
-                                            echo ' checked ';
+        <div class="container" style="max-width: 100%;">
+            <div class="col-xl-12">
+                <div class="col-sm-3 float-left">
+                    <form action="/shop.php?for=<?php echo $for;?>'" method="post">
+                        <div id="filter-title-row" class="row">    
+                            <div class="col-sm-6">
+                                <h3 class="headline">Filters</h3>
+                            </div>
+                            <div id="filter-submit-btn" class="col-sm-2">
+                                <input class="btn btn-secondary" style="margin-right:15px;" type="submit" value="&#8635;" name="reset">
+                            </div>
+                            <div id="filter-reset-btn" class="col-sm-4">
+                                <input class="btn btn-secondary" type="submit" value="apply" name="filter">
+                            </div>
+                        </div>
+                        <span class="keyline-horizontal keyline-grey"></span>
+                        <div class="container">
+                            <h3>Brand</h3>
+                            <!-- <span class="keyline-horizontal keyline-grey"></span> -->
+                            <div class="filter-section" id="filter-brand">
+                                <?php
+                                    if($brands->num_rows > 0){
+                                        
+                                        while($brand = $brands->fetch_assoc()){
+                                            echo '
+                                                <div class="check-box-wrapper"><label><input type="checkbox" name="brands[]" value="'.$brand["brand"].'"
+                                            ';
+                                            if(isset($_POST["brands"])){
+                                                if(in_array($brand["brand"], $_POST["brands"])){
+                                                    echo ' checked ';
+                                                }
+                                            }
+                                            echo '
+                                                >'.$brand["brand"].'</label></div>
+                                            ';
                                         }
                                     }
-                                    echo '
-                                        >'.$brand["brand"].'</label></div>
-                                    ';
-                                }
-                            }
-                        ?>
-                    </div>
-                    <h3>Color</h3>
-                    <!-- <span class="keyline-horizontal keyline-grey"></span> -->
-                    <div class="filter-section" id="filter-color">
-                        <?php
-                            if($colors->num_rows > 0){
-                                while($color = $colors->fetch_assoc()){
-                                    echo '
-                                        <div class="selection-cube bg-'.$color['color'].'">
-                                            <label>
-                                                <input type="checkbox" value="'.$color['color'].'" name="colors[]"
-                                    ';
-                                    if(isset($_POST["colors"])){
-                                        if(in_array($color["color"], $_POST["colors"])){
-                                            echo ' checked ';
+                                ?>
+                            </div>
+                            <h3>Color</h3>
+                            <!-- <span class="keyline-horizontal keyline-grey"></span> -->
+                            <div class="filter-section" id="filter-color">
+                                <?php
+                                    if($colors->num_rows > 0){
+                                        while($color = $colors->fetch_assoc()){
+                                            echo '
+                                                <div class="selection-cube bg-'.$color['color'].'">
+                                                    <label>
+                                                        <input type="checkbox" value="'.$color['color'].'" name="colors[]"
+                                            ';
+                                            if(isset($_POST["colors"])){
+                                                if(in_array($color["color"], $_POST["colors"])){
+                                                    echo ' checked ';
+                                                }
+                                            }           
+                                            echo '
+                                                ><span>&#x2714;</span>
+                                                    </label>
+                                                </div>
+                                            ';
                                         }
-                                    }           
-                                    echo '
-                                        ><span>&#x2714;</span>
-                                            </label>
+                                    }
+                                ?>
+                            </div>    
+                        </div>        
+                    </form>
+                </div>
+                <div class="col-sm-9">
+                    <div class="product-list-container" id="product-list">
+                        <?php 
+                            if($products != null && $products->num_rows > 0){
+                                while($item = $products->fetch_assoc()){
+                                    echo '   
+                                        <div id="product-card" class="product-grid-wrapper" onclick="navToDetailPage(\''.$item["product_id"].'\')">
+                                            <div class="row">
+                                            <img class="img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
+                                            </div>
+                                            <div class="row">
+                                                <h4>'.$item["product_name"].'</h4>
+                                            </div>
+                                            <div class="row">
+                                                <h6>$' .$item["price"].'</h6>
+                                            </div>
                                         </div>
                                     ';
                                 }
+                            }else{
+                                echo '
+                                    <h3 style="width:100%;text-align:center;padding:50px 0;">No matching content</h3>
+                                ';
                             }
                         ?>
-                    </div>    
-                    <div class="filter-section" id="filter-price">
-                    </div>        
-                    </form>
+                    </div>
+                    <div class="card-deck col-sm-12">
+                            <!-- <div id="product-card" class="card" onclick="navToDetailPage(\''.$item["product_id"].'\')">
+                                <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
+                                <div class="card-block">
+                                    <h4 class="card-title">'.$item["product_name"].'</h4>
+                                    <p class="card-text">'.$item["description"].'</p>
+                                    <p class="card-text">$ '.$item["price"].'</p>
+                                </div>
+                            </div>
+                            <div id="product-card" class="card" onclick="navToDetailPage(\''.$item["product_id"].'\')">
+                                <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
+                                <div class="card-block">
+                                    <h4 class="card-title">'.$item["product_name"].'</h4>
+                                    <p class="card-text">'.$item["description"].'</p>
+                                    <p class="card-text">$ '.$item["price"].'</p>
+                                </div>
+                            </div>
+                            <div id="product-card" class="card" onclick="navToDetailPage(\''.$item["product_id"].'\')">
+                                <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
+                                <div class="card-block">
+                                    <h4 class="card-title">'.$item["product_name"].'</h4>
+                                    <p class="card-text">'.$item["description"].'</p>
+                                    <p class="card-text">$ '.$item["price"].'</p>
+                                </div>
+                            </div> -->
+                        <?php 
+                            // if($products != null && $products->num_rows > 0){
+                            //     $counter = 0;
+                            //     while($item = $products->fetch_assoc()){
+                            //         if($counter % 3 == 0){
+                            //             echo '<div class="row">';
+                            //         }
+                            //         echo '
+                            //             <div id="product-card" class="card col-sm-3" onclick="navToDetailPage(\''.$item["product_id"].'\')">
+                            //                 <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
+                            //                 <div class="card-block">
+                            //                     <h4 class="card-title">'.$item["product_name"].'</h4>
+                            //                     <p class="card-text">'.$item["description"].'</p>
+                            //                     <p class="card-text">$ '.$item["price"].'</p>
+                            //                 </div>
+                            //             </div>
+                            //         ';
+                            //         if($counter % 3 == 2){
+                            //             echo '</div>';
+                            //         }
+                            //         $counter += 1;
+                            //     }
+                            //     if($counter % 3 < 2){
+                            //         echo '</div>';
+                            //     }
+                            // }else{
+                            //     echo '
+                            //         <h3 style="width:100%;text-align:center;padding:50px 0;">No matching content</h3>
+                            //     ';
+                            // }
+                        ?>
+                    </div>
                 </div>
             </div>
-            <div class="product-list-container" id="product-list">
-                <?php 
-                    if($products != null && $products->num_rows > 0){
-                        while($item = $products->fetch_assoc()){
-                            echo '   
-                                <div class="product-grid-wrapper" onclick="navToDetailPage(\''.$item["product_id"].'\')">
-                                    <div class="product-image-wrapper">
-                                        <img src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
-                                    </div>
-                                    <div class="product-title-wrapper">
-                                        <h2>'.$item["product_name"].'</h2>
-                                    </div>
-                                    <div class="product-title-wrapper">
-                                        <h4>'.$item["price"].'</h4>
-                                    </div>
-                                </div>
-                            ';
-                        }
-                    }else{
-                        echo '
-                            <h3 style="width:100%;text-align:center;padding:50px 0;">No matching content</h3>
-                        ';
-                    }
-                ?>
-            </div>
-
         </div>
     </main>
     <?php

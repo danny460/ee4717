@@ -17,10 +17,13 @@ body {
 .warning {
     color: red;
 }
-.btn, a:hover {
+.nav-link:hover{
+    color: orangered;
+}
+input.btn, a:hover {
     cursor: pointer;
 }
-.btn{
+input.btn{
     height: 40px;
     text-transform: uppercase;
     font-size: 14px;
@@ -31,19 +34,19 @@ body {
     background-color: orangered;
     transition: .3s linear;
 }
-.btn.btn-secondary{
+input.btn.btn-secondary{
     color: orangered;
     background-color: white;
 }
-.btn.btn-secondary:hover{
+input.btn.btn-secondary:hover{
     background-color: orangered;
     color: white;
 }
-.btn:hover {
+input.btn:hover {
     color: orangered;
     background-color: white;
 }
-.btn:focus {
+input.btn:focus {
     outline: 0;
 }
 
@@ -67,15 +70,18 @@ body {
     transition: .2s linear;
 }
 .section-link:hover {
+    color: white;
     border-color: white;
 }
 
 label, p, h1, h2, h3, a {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-a, a:visited { 
+a, a:visited, a:focus, a:hover { 
     text-decoration: none; 
-    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+nav.navbar {
+    border-radius: 0px;
 }
 li { 
     display: inline-block;
@@ -187,55 +193,16 @@ div.container {
 /**==================================
 Navbar
 ==================================**/
-.top-nav {
-    background-color: white;
-    padding: 20px 10px;
-    line-height: 12px;
+#top-nav{
+    height:50px;
 }
-
-.top-nav a{
-    margin: 0 10px;
-}
-
-.second-nav {
-    background-color: #2f2f2f;
-    height: 60px;
+#section-nav{
     text-align: center;
+    height: 60px;
 }
-
-.second-nav li {
-    margin:  20px 20px;
-    font-weight: bolder;
+#section-nav a{
+    padding: 10px 20px;
 }
-
-.second-nav a {
-    padding: 10px;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 6px 0px 0px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content, .dropdown-content li {
-    display: block;
-}
-
-.dropdown-content li {
-    margin: 20px 0;
-}
-
-
 /**==================================
 Hero
 ==================================**/
@@ -300,9 +267,10 @@ Product Section
 .product-gallery-wrapper {
     display: inline-block;
 }
+
 .product-grid-wrapper {
     margin: 20px;
-    padding: 50px 25px;
+    padding: 25px;
     display: inline-block; 
     width: 300px;
     height: 400px;
@@ -310,19 +278,24 @@ Product Section
     border: 2px solid transparent;
     border-radius: 5px;
     transition: .2s linear;
+    border: 2px solid lightgrey;
 }
 
 .product-grid-wrapper:hover {
-    border: 2px solid #313131;
+    cursor: pointer;
+    border: 2px solid orangered;
 }
 
-.product-image-wrapper {
-    overflow: hidden;
-    width: 300px;
-    height: 300px;
+.product-grid-wrapper img{
+    padding: 10px;
+    border-width: 0 0 1 0;
+    border-style: solid;
+    border-color: lightgray;
+    margin-bottom: 20px;
+    transition: .2s linear;
 }
-.product-image-wrapper img{
-    height: 300px;
+.product-grid-wrapper:hover img{
+    padding: 0px;
 }
 
 /**==================================
@@ -471,26 +444,18 @@ Cart Sid Nav
 /**=================================
 Shopping List Page
 ==================================**/
-.shop-container {
-    overflow: hidden;
+#filter-title-row {
+    padding-top: 20px;
 }
-.filter-column-container {
-    float: left;
-    width: 300px;
-}
-.filter-container {
-    margin-left: 20px;
+#filter-submit-btn, #filter-reset-btn{
+    padding: 10px;
 }
 .product-list-container {
     overflow:auto;
 }
-.filter-section {
-    padding: 5px;
-}
 .check-box-wrapper {
     display: block;
 }
-
 
 input[type="checkbox"] {
     border-radius: 2px;
