@@ -39,13 +39,13 @@
                     <li>
                         <div class="product-grid-wrapper">
                             <div class="product-image-wrapper">
-                                <img src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
+                                <img class="img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
                             </div>
                             <div class="product-title-wrapper">
-                                <h2>product name</h2>
+                                <h4>product name</h4>
                             </div>
                             <div class="product-title-wrapper">
-                                <h4>$ 100.0</h4>
+                                <h6>$ 100.0</h6>
                             </div>
                         </div>
                     </li>
