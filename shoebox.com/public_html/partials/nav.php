@@ -10,7 +10,7 @@
     }
 ?>
 <nav id="top-nav" class="navbar navbar-light bg-faded">
-  <a class="navbar-brand" href="/index.php">Shoebox</a>
+  <a class="navbar-brand" href="/index.php">SHOEBOX</a>
     <ul class="float-right navbar-nav mr-auto">
         <?php
             if($hasUser){

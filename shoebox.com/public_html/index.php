@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="/js/script.js"></script>
-    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>THE SHOEBOX</title>
 </head>
@@ -22,15 +21,16 @@
         <header>
             <?php include 'partials/nav.php'?>
         </header>
-        <section id="hero" class="hero">
+        <div id="hero" class="hero">
             <div class="hero-video-wrapper">
                 <video class="hero-video" loop muted autoplay src="/assets/hero.video.mp4"></video>
             </div>
             <div class="hero-title-wrapper">
-                <h2 class="hero-title">Lorem ipsum.</h2>
-                <p class="hero-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h1 class="display-4 text-white">Featured</h1>
+                <p class="lead text-white">Nike Ice Flash Collection</p>
+                <p class="text-white">From strength to style, cool colors to ignite your workout or weekend.</p>
             </div>
-        </section>
+        </div>
         <section class="intro" id="feature-product">
             <ul class="product-gallery-wrapper inline">
             <?php
