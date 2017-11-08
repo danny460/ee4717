@@ -42,7 +42,7 @@
                 <ul>
                     <?php
                         if ($isLoggedIn){
-                            if (!$hasItem){
+                            if ($hasItem){
                                 $items = dbGetCartItems($_SESSION["userid"]);
                                 if($items->num_rows>0){
                                     while($item = $items->fetch_assoc()){
@@ -56,12 +56,13 @@
                                                             </div>
                                                             <div class="col-xs-7">
                                                                 <h6 class="text-warning">'.$item["product_name"].'</h6>
-                                                                <h6 id="size">Size:  '.$item["size"].'</h6>
-                                                                <h6 id="color">Color:  '.$item["color"].'</h6>
-                                                                <h6 id="qty">Quantity:  '.$item["quantity"].'</h5>
+                                                                <p class="hint-txt" id="color"><strong>Color:</strong>  '.$item["color"].'</p>
+                                                                <p class="hint-txt" id="size"><strong>Size:</strong>  '.$item["size"].'</p>
+                                                                <p class="hint-txt" id="qty"><strong>Quantity:</strong>  '.$item["quantity"].'</p>
+                                                                <p class="hint-txt" id="qty"><strong>Subtotal:</strong>  $ '.$item["subtotal"].'</p>
                                                                 <input type="hidden" name="item_id" value="'.$item["item_id"].'">
                                                                 <input type="hidden" name="product_id" value="'.$item["product_id"].'">
-                                                                <input class="btn btn-secondary" type="button" name="modify" value="edit" onclick="editItem(\'e\', this)">
+                                                                <input id="'.$item["item_id"].'" class="btn btn-secondary" type="button" name="modify" value="edit" onclick="editItem(\'e\', this)">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -77,7 +78,7 @@
             </div>
             <?php
                 if ($isLoggedIn){
-                    if (!$hasItem){
+                    if ($hasItem){
                         echo '
                             <div class="btn-container" style="height:20%">
                                 <input type="submit" value="Order" class="btn float-right" style="margin: 20px; margin-right: 50px;">
@@ -90,11 +91,11 @@
     </div>
 </div>
 <script>
-    var orginalContainer = null;
+    var originalContainer = null;
     function editItem(dummy, src, itemId){
-        orginalContainer = src.parentNode;
-        orginalContainer.style.display = "none";
-        var parentContainer = orginalContainer.parentNode;
+        originalContainer = src.parentNode;
+        originalContainer.style.display = "none";
+        var parentContainer = originalContainer.parentNode;
         var xmlReq = new XMLHttpRequest();
         xmlReq.onreadystatechange = function(){
             if(this.readyState === 4 && this.status === 200){
@@ -105,21 +106,43 @@
                 parentContainer.appendChild(responseEl);
             }
         };        
-        xmlReq.open("POST", '/include/item-edit.php?item_id=1234');
+        xmlReq.open("POST", '/include/item-edit.php?edit&item_id=' + src.id);
         xmlReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlReq.send();
     }  
 
     function cancelEdit(dummy, src){
-        console.log("HELLO");
-        src.parentNode.remove();
-        orginalContainer.style.display = "block";
+        src.parentNode.parentNode.remove();
+        originalContainer.style.display = "block";
     }
     
-    function updateItem(container){
-        var pElements = container.getElementsByTagName("p");
-        pElements[1].className = pElements[1].className.replace(" hidden", "");
-        pElements[2].className = pElements[2].className.replace(" hidden", "");
-        pElements[3].className = pElements[3].className.replace(" hidden", "");
+    function updateItem(dummy, src){
+        var currentContainer = src.parentNode.parentNode;
+        var parentContainer = originalContainer.parentNode;
+        var selectInputs = currentContainer.getElementsByTagName("select");
+        var colorInput = selectInputs[0];
+        var sizeInput = selectInputs[1];
+        var quantityInput = currentContainer.getElementsByTagName("input")[0];
+        var color = colorInput.options[colorInput.selectedIndex].text;
+        var size = sizeInput.options[sizeInput.selectedIndex].text;
+        var quantity = quantityInput.value;
+        console.log(selectInputs,quantityInput);
+        console.log(color, size, quantity);
+        var xmlReq = new XMLHttpRequest();
+        xmlReq.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                console.log("response", xmlReq.responseText);
+                var dummyHTML = document.createElement("html");
+                dummyHTML.innerHTML = xmlReq.responseText;
+                var responseEl = dummyHTML.getElementsByTagName("div")[0];
+                parentContainer.appendChild(responseEl);
+                src.parentNode.parentNode.remove();
+                originalContainer.remove();
+            }
+        };
+        xmlReq.open("POST", '/include/item-edit.php?update&item_id=' + src.id + '&color=' + color + '&size=' + size + '&quantity=' + quantity);
+        xmlReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlReq.send();
+        
     }
 </script>
