@@ -117,6 +117,9 @@ main, div.container {
 .bg-white {
     background-color: white;
 }
+.bg-grey {
+    background-color: rgb(143, 143, 143);
+}
 .bg-yellow {
     background-color: yellow;
 }
@@ -126,14 +129,19 @@ main, div.container {
 .bg-green {
     background-color: lightgreen;
 }
-
+.bg-brown {
+    background-color: #CD853F;
+}
+.bg-pink {
+    background-color: palevioletred;
+}
 .selection-cube {
     display: inline-block;
     margin: 5px;
     width: 30px;
     height: 30px;
-    border-radius:4px;
-    border:1px solid #D0D0D0;
+    border-radius: 50%;
+    border:1px solid rgb(49, 49, 49);
     overflow:auto;
     float:left;
 }
@@ -149,14 +157,32 @@ main, div.container {
     text-align:center;
     padding: 3px 0px;
     display:block;
+    height: 3px;
+    width: 6px;
+}
+.bg-black label span, .bg-red label span, .bg-grey label span {
+    /* content: '✔'; */
+    color: white;
+}
+.selection-cube label span:after {
+    position: absolute;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    height: 7px;
+    width: 12px;
+    border-style: solid;
+    border-width: 0 0 3px 3px !important;
+    margin: 6px 0 0 5px;
+    content: '';
 }
 
 .selection-cube label input {
     position:absolute;
-    display: none;
     opacity: 0;
 }
-
+.selection-cube input:hover {
+    cursor: pointer;
+}
 .selection-cube input + span {
     visibility: hidden;
     opacity: 0;
@@ -230,7 +256,7 @@ Navbar
     padding: 10px 20px;
 }
 /**==================================
-Hero
+Home page
 ==================================**/
 #hero{
     height: auto;
@@ -256,50 +282,9 @@ Hero
     width: 30%
 }
 
-/**==================================
-Intro
-==================================**/
 #feature-product {
     margin-top: 50px;
 }
-
-/**==================================
-Product Section
-==================================**/
-.product-gallery-wrapper {
-    display: inline-block;
-}
-
-.product-grid-wrapper {
-    margin: 20px;
-    padding: 25px;
-    display: inline-block; 
-    width: 300px;
-    height: 400px;
-    display: inline-block;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    transition: .2s linear;
-    border: 2px solid lightgrey;
-}
-
-.product-grid-wrapper:hover {
-    cursor: pointer;
-    border: 2px solid orangered;
-}
-
-.product-grid-wrapper img{
-    padding: 10px;
-    border-width: 0 0 1 0;
-    border-style: solid;
-    border-color: lightgray;
-    margin-bottom: 20px;
-    transition: .2s linear;
-}
-.product-grid-wrapper:hover img{
-    padding: 0px;
-}
-
 /**==================================
 Footer
 ==================================**/
@@ -463,6 +448,39 @@ Shopping List Page
 
 input[type="checkbox"] {
     border-radius: 2px;
+}
+.product-gallery-wrapper {
+    display: inline-block;
+}
+
+.product-grid-wrapper {
+    margin: 20px;
+    padding: 25px;
+    display: inline-block; 
+    width: 300px;
+    height: 400px;
+    display: inline-block;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: .2s linear;
+    border: 2px solid lightgrey;
+}
+
+.product-grid-wrapper:hover {
+    cursor: pointer;
+    border: 2px solid orangered;
+}
+
+.product-grid-wrapper img{
+    padding: 10px;
+    border-width: 0 0 1 0;
+    border-style: solid;
+    border-color: lightgray;
+    margin-bottom: 20px;
+    transition: .2s linear;
+}
+.product-grid-wrapper:hover img{
+    padding: 0px;
 }
 /**=================================
 Item Detail Page

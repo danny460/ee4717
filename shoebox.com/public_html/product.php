@@ -86,7 +86,7 @@
                                             }
                                         }           
                                         echo '
-                                            ><span>&#x2714;</span>
+                                            ><span>  </span>
                                                 </label>
                                             </div>
                                         ';
