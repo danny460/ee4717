@@ -13,7 +13,7 @@
                     <h6 class="text-warning">'.$item["product_name"].'</h6>
                     <div id="edit-row" class="row">
                         <label class="sr-only" for="color">Color:</label>
-                        <select class="form-control" id="color" name="color">
+                        <select class="form-control" id="color" name="color" required>
                             
             ';
             if($color_results->num_rows > 0){
@@ -34,7 +34,7 @@
                     </div>
                     <div id="edit-row" class="row">
                         <label class="sr-only" for="size">Size:</label>
-                        <select class="form-control" id="size" name="size">
+                        <select class="form-control" id="size" name="size" required>
             ';
             if($size_results->num_rows > 0){
                 while($size = $size_results->fetch_assoc()){
@@ -54,7 +54,7 @@
                     </div>
                     <div id="edit-row" class="row">
                         <label class="sr-only" for="quantity">Quantity:</label>
-                        <input type="number" class="form-control" min="0" id="quantity" name="quantity" value="'.$item["quantity"].'">
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="'.$item["quantity"].'" min="1" max="99" required>
                     </div>
                     <div id="edit-row" class="row">
                         <input id="'.$item["item_id"].'" class="btn btn-secondary" style="padding:0 20px; margin-right:10px;" type="button" name="edit" value="&#x270E;" onclick="updateItem(\'e\', this)">

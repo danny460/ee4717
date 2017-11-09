@@ -65,7 +65,7 @@
                                                                 <p class="hint-txt" id="size"><strong>Size:</strong>  '.$item["size"].'</p>
                                                                 <p class="hint-txt" id="qty"><strong>Quantity:</strong>  '.$item["quantity"].'</p>
                                                                 <p class="hint-txt" id="qty"><strong>Subtotal:</strong>  $ '.$item["subtotal"].'</p>
-                                                                <input type="hidden" name="item_id" value="'.$item["item_id"].'">
+                                                                <input type="hidden" name="item_id" value="'.$item["item_id"].'" >
                                                                 <input type="hidden" name="product_id" value="'.$item["product_id"].'">
                                                                 <input id="'.$item["item_id"].'" class="btn btn-secondary" type="button" name="modify" value="edit" onclick="editItem(\'e\', this)">
                                                             </div>
@@ -105,7 +105,6 @@
         var xmlReq = new XMLHttpRequest();
         xmlReq.onreadystatechange = function(){
             if(this.readyState === 4 && this.status === 200){
-                console.log(xmlReq.responseText);
                 var dummyHTML = document.createElement("html");
                 dummyHTML.innerHTML = xmlReq.responseText;
                 var responseEl = dummyHTML.getElementsByTagName("div")[0];
@@ -132,12 +131,13 @@
         var color = colorInput.options[colorInput.selectedIndex].text;
         var size = sizeInput.options[sizeInput.selectedIndex].text;
         var quantity = quantityInput.value;
-        console.log(selectInputs,quantityInput);
-        console.log(color, size, quantity);
+        if(color.trim().length === 0 || size.trim().length === 0 || quantity.trim().length === 0){
+            alert("Must not leave options blank.");
+            return;
+        }
         var xmlReq = new XMLHttpRequest();
         xmlReq.onreadystatechange = function(){
             if(this.readyState === 4 && this.status === 200){
-                console.log("response", xmlReq.responseText);
                 var dummyHTML = document.createElement("html");
                 dummyHTML.innerHTML = xmlReq.responseText;
                 var responseEl = dummyHTML.getElementsByTagName("div")[0];

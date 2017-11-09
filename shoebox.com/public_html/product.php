@@ -43,35 +43,33 @@
         <div id="product-container" class="container">
             <div class="col-sm-12">
                 <div class="row">
-                    <div id="item-gallery-container" class="col-sm-4">
-                        <div class="row" id="image-row">
-                            <?php
-                                if($item["pic_url"]===''){
-                                    echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
-                                }else{
-                                    echo '
-                                        <a href="/assets/products/'.$item["pic_url"].'">
-                                            <img class="img-fluid" src="/assets/products/'.$item["pic_url"].'" alt="'.$item["product_name"].'"></img>
-                                        </a>
-                                    ';
-                                }     
-                            ?>
-                        </div>    
+                    <div id="product-img-col" class="col-sm-6">
+                        <?php
+                            if($item["pic_url"]===''){
+                                echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
+                            }else{
+                                echo '
+                                    <a href="/assets/products/'.$item["pic_url"].'">
+                                        <img class="img-fluid" src="/assets/products/'.$item["pic_url"].'" alt="'.$item["product_name"].'"></img>
+                                    </a>
+                                ';
+                            }     
+                        ?>
                     </div>
-                    <div id="item-details-container" class="col-sm-8">
+                    <div id="product-detail-col" class="col-sm-6">
                             <?php echo  '<form action="product.php?id='.$product_id.'" method="post">'; ?>
                             <?php
                                 $product_result = $mysqli->query($product_query);
                                 if($product_result->num_rows == 1){
                                     $item = $product_result->fetch_assoc();
                                     echo '
-                                        <div id="title-row" class="col-sm-8">
+                                        <div id="title-row" class="row">
                                             <h1>'.$item['product_name'].'</h1>
                                             <p>'.$item['description'].'</p>
                                         <div>
                                     ';
                                 }
-                                echo '<div id="color-row" class="col-sm-8">';
+                                echo '<div id="color-row" class="row col-sm-12">';
                                 echo '<h5>Color</h5>';
                                 if($color_result->num_rows > 0){
                                     while($color = $color_result->fetch_assoc()){
@@ -86,21 +84,21 @@
                                             }
                                         }           
                                         echo '
-                                            ><span>  </span>
+                                        required><span></span>
                                                 </label>
                                             </div>
                                         ';
                                     }
                                 }
                                 echo '</div>';
-                                echo '<div id="size-row" class="col-sm-8">';
+                                echo '<div id="size-row" class="row col-sm-12">';
                                 echo '<h5>Size</h5>';
                                 if($size_result->num_rows > 0){
                                     while($item = $size_result->fetch_assoc()){
                                         echo '
                                             <div class="size-cube bg-white">
                                                 <label>
-                                                    <input type="radio" value="'.$item['size'].'" name="size"><span>'.$item['size'].'</span>
+                                                    <input type="radio" value="'.$item['size'].'" name="size" required><span>'.$item['size'].'</span>
                                                 </label>
                                             </div>
                                         ';
@@ -108,11 +106,11 @@
                                 }
                                 echo '</div>'
                             ?>
-                                <div id="quantity-row" class="col-sm-8">
-                                    <h5>Quantity</h5>
-                                    <input type="number" value="0" name="qty">
+                                <div id="quantity-row" class="row col-sm-12">
+                                    <label>Quantity</label>
+                                    <input class="form-control" style="width: 100px;" type="number" value="" min="1" max="2" name="qty" required>
                                 </div>
-                                <div id="submit-row" class="col-sm-8">
+                                <div id="submit-row" class="row col-sm-12">
                                     <input class="btn" type="submit" value="add to cart" name="submit">
                                 </div>
                             </form>

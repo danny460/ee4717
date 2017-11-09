@@ -43,7 +43,7 @@
                             echo '<ul class="horizontal-slide">';
                             while($item = $currItems->fetch_assoc()){
                                 echo '
-                                    <li class="col-xs-3">
+                                    <li style="width: 200px;">
                                         <div id="order-item-container" class="container">';
                             if($item["pic_url"]===''){
                                 echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
@@ -53,7 +53,9 @@
                             echo '
                                             <div class="row">
                                                 <div class="col-xs-7">
-                                                    <h6 class="text-warning">'.$item["product_name"].'</h6>
+                                                    <div style="width:200px;word-wrap: break-word;">
+                                                        <p class="hint-txt" style="white-space: normal;"><strong>'.$item["product_name"].'</strong></p>
+                                                    </div>
                                                     <p class="hint-txt" id="color"><strong>Color:</strong>  '.$item["color"].'</p>
                                                     <p class="hint-txt" id="size"><strong>Size:</strong>  '.$item["size"].'</p>
                                                     <p class="hint-txt" id="qty"><strong>Quantity:</strong>  '.$item["quantity"].'</p>

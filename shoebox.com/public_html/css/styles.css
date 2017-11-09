@@ -221,7 +221,6 @@ main, div.container {
  
  .size-cube label input {
      position:absolute;
-     display: none;
      opacity: 0;
  }
  
@@ -485,27 +484,19 @@ input[type="checkbox"] {
 /**=================================
 Item Detail Page
 ==================================**/
+#product-container{
+    padding: 50px;
+}
+#product-img-col, #product-detail-col{
+    padding: 50px;
+}
+#submit-row {
+    padding-top: 50px;
+}
 
-.cube-content {
-    margin: 5px;
-}
-#image-row {
-    margin: 20px;
-    margin-top: 100px;
-}
-#image-row img{
-    border: 1px solid transparent;
-}
-#image-row img:hover{
-    cursor: pointer;
-    border: 1px solid black;
-}
-#title-row,#color-row,#size-row,#quantity-row,#submit-row {
-    margin: 20px 0;
-}
-/**===
+/*=========================
 Login/Signup Page
-*==*/
+========================*/
 .form-container {
     width: 100%;
 }

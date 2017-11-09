@@ -51,11 +51,11 @@
                                 }            
                                 echo '
                                         </div>
-                                        <div class="product-title-wrapper">
-                                            <h4>'.$item["product_name"].'</h4>
+                                        <div class="row col-xs-12">
+                                            <h6 style="white-space: normal;">'.$item["product_name"].'</h6>
                                         </div>
-                                        <div class="product-title-wrapper">
-                                            <h4>$ '.$item["price"].'</h4>
+                                        <div class="row col-xs-12">
+                                            <h6 style="font-size: 12px;">$ '.$item["price"].'</h6>
                                         </div>
                                     </div>
                                 </li>

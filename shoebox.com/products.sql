@@ -22,7 +22,7 @@ INSERT INTO products (product_id, product_name, description, brand, gender, pric
     (52, 'Iniki Runner','A celebrated adidas heritage runner gets a fresh update in these women\'s shoes. Built in a two-way stretch mesh and vintage suede upper, the archival look pops with an unexpected shiny mesh tongue.', 'adidas', 'women', 189.00,  'BY9095_SL_eCom.jpg'),
     /*pink*/
 /*kids*/
-    (101, 'AIR JORDAN XI RETRO THREE-QUARTER', 'The Air Jordan XI Retro Three-Quarter Toddler Shoe features the plush cushioning, unique lines and durability of the original, delivering the lasting comfort and bold look that made it famous.', 'nike', 'kids', 105.00, 'air-jordan-xi-retro-three-quarter-shoe.jpg'),
+    (101, 'AIR JORDAN XI RETRO', 'The Air Jordan XI Retro Three-Quarter Toddler Shoe features the plush cushioning, unique lines and durability of the original, delivering the lasting comfort and bold look that made it famous.', 'nike', 'kids', 105.00, 'air-jordan-xi-retro-three-quarter-shoe.jpg'),
     (102, 'Superstar 360 Supercolor', 'A fresh take on the iconic adidas Originals Superstar trainer, these infants\' shoes stand out with bold colour and iridescent 3-Stripes.', 'adidas', 'kids', 69.00, 'BZ0554_SL_eCom.jpg');
 
 INSERT INTO product_variants (product_id, size, color) VALUES 
