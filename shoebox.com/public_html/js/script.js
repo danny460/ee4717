@@ -9,8 +9,4 @@ function closeNav() {
     sidenav.className = "cart-side-nav";
 }
 
-//test
-// setTimeout(function(){
-//     openNav();
-// }, 200);
 

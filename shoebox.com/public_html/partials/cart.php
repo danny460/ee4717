@@ -92,6 +92,7 @@
 </div>
 <script>
     var originalContainer = null;
+    //in javascript
     function editItem(dummy, src, itemId){
         originalContainer = src.parentNode;
         originalContainer.style.display = "none";
