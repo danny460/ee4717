@@ -10,9 +10,9 @@ INSERT INTO products (product_id, product_name, description, brand, gender, pric
     /*white/red*/
     (3, 'Nike Flyknit', 'Nike Flyknit Max Braided Mesh Breathable Couple Running Shoes', 'nike', 'men', 155.00,  'Nike_Flyknit.jpg'),
     /*grey*/
-    (4, 'EQT Support Ultra Primeknit King Push','A collaboration with the hip-hop artist, these shoes flash an adaptive adidas Primeknit upper with premium carp skin overlays and translucent details.', 'adidas', 'men', 339.00,  'DB0181_SL_eCom.jpg'),
+    (4, 'EQT Support Ultra','A collaboration with the hip-hop artist, these shoes flash an adaptive adidas Primeknit upper with premium carp skin overlays and translucent details.', 'adidas', 'men', 339.00,  'DB0181_SL_eCom.jpg'),
     /*brown*/
-    (5, 'Crazy Explosive 2017 Primeknit','Built for dizzying dunks and mean chase-down blocks, these basketball shoes cater to Andrew Wiggins\' high-flying game.', 'adidas', 'men', 259.00,  'BY4468_SL_eCom.jpg'),
+    (5, 'Crazy Explosive 2017','Built for dizzying dunks and mean chase-down blocks, these basketball shoes cater to Andrew Wiggins\' high-flying game.', 'adidas', 'men', 259.00,  'BY4468_SL_eCom.jpg'),
     /*white/black/blue*/
     (6, 'Ultraboost All Terrain LTD','The highly responsive boost midsole in these men\'s running shoes delivers an energy-returning ride while a water-repellent upper wraps your foot in support and comfort.', 'adidas', 'men', 379.00,  'CG3003_SL_eCom.jpg'),
     /*black*/

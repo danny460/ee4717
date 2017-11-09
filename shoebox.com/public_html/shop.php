@@ -54,24 +54,26 @@
         </header>
         <div class="container" style="max-width: 100%;">
             <div class="col-xl-12">
-                <div class="col-sm-3 float-left">
+                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 float-left">
                     <form action="/shop.php?for=<?php echo $for;?>" method="post">
                         <div id="filter-title-row" class="row">    
-                            <div class="col-sm-6">
-                                <h3 class="headline">Filters</h3>
+                            <div class="col-xs-5 col-md-5" style="padding:20px 0;">
+                                <h5 class="headline">Filters</h5>   
                             </div>
-                            <div id="filter-submit-btn" class="col-sm-2">
+                            <div id="filter-submit-btn" class="col-xs-2 col-md-2">
                                 <input class="btn btn-secondary" style="margin-right:15px;" type="submit" value="&#8635;" name="reset">
                             </div>
-                            <div id="filter-reset-btn" class="col-sm-4">
+                            <div id="filter-reset-btn" class="col-xs-5 col-md-5">
                                 <input class="btn btn-secondary" type="submit" value="apply" name="filter">
                             </div>
+                            <span class="keyline-horizontal keyline-grey"></span>
                         </div>
-                        <span class="keyline-horizontal keyline-grey"></span>
-                        <div class="container">
-                            <h5>BRAND</h5>
-                            <!-- <span class="keyline-horizontal keyline-grey"></span> -->
+
+                        <div class="row">
+                            <span class="keyline-horizontal keyline-grey"></span>
                             <div class="filter-section" id="filter-brand">
+                                <h5>BRAND</h5>
+                                <span class="keyline-horizontal keyline-grey"></span>
                                 <?php
                                     if($brands->num_rows > 0){
                                         
@@ -93,8 +95,9 @@
                                     }
                                 ?>
                             </div>
-                            <h5>COLOR</h5>
                             <div class="filter-section" id="filter-color">
+                                <h5>COLOR</h5>
+                                <span class="keyline-horizontal keyline-grey"></span>
                                 <?php
                                     if($colors->num_rows > 0){
                                         while($color = $colors->fetch_assoc()){
@@ -120,14 +123,14 @@
                         </div>        
                     </form>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 col-xl-10">
                     <div class="product-list-container" id="product-list">
                         <?php 
                             if($products != null && $products->num_rows > 0){
                                 while($item = $products->fetch_assoc()){
                                     echo '   
                                         <div id="product-card" class="product-grid-wrapper" onclick="navToDetailPage(\''.$item["product_id"].'\')">
-                                            <div class="row">
+                                            <div class="">
                                     ';
                                     if($item["pic_url"]===''){
                                         echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
@@ -136,10 +139,10 @@
                                     }          
                                     echo '
                                             </div>
-                                            <div class="row">
+                                            <div class="">
                                                 <h6>'.$item["product_name"].'</h6>
                                             </div>
-                                            <div class="row">
+                                            <div class="">
                                                 <h6>$' .$item["price"].'</h6>
                                             </div>
                                         </div>
