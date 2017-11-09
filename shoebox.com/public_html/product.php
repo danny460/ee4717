@@ -40,14 +40,22 @@
             <?php include 'partials/nav.php'?>
         </header>
         
-        <div class="container">
+        <div id="product-container" class="container">
             <div class="col-sm-12">
                 <div class="row">
                     <div id="item-gallery-container" class="col-sm-4">
                         <div class="row" id="image-row">
-                            <a href="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg">
-                                <img class="img-fluid" style="max-width:100%;height:auto;" id="product-image" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="">
-                            </a>
+                            <?php
+                                if($item["pic_url"]===''){
+                                    echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
+                                }else{
+                                    echo '
+                                        <a href="/assets/products/'.$item["pic_url"].'">
+                                            <img class="img-fluid" src="/assets/products/'.$item["pic_url"].'" alt="'.$item["product_name"].'"></img>
+                                        </a>
+                                    ';
+                                }     
+                            ?>
                         </div>    
                     </div>
                     <div id="item-details-container" class="col-sm-8">
@@ -90,7 +98,7 @@
                                 if($size_result->num_rows > 0){
                                     while($item = $size_result->fetch_assoc()){
                                         echo '
-                                            <div class="selection-cube size-cube bg-white">
+                                            <div class="size-cube bg-white">
                                                 <label>
                                                     <input type="radio" value="'.$item['size'].'" name="size"><span>'.$item['size'].'</span>
                                                 </label>

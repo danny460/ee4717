@@ -128,10 +128,16 @@
                                     echo '   
                                         <div id="product-card" class="product-grid-wrapper" onclick="navToDetailPage(\''.$item["product_id"].'\')">
                                             <div class="row">
-                                            <img class="img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
+                                    ';
+                                    if($item["pic_url"]===''){
+                                        echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
+                                    }else{
+                                        echo '<img class="img-fluid" src="/assets/products/'.$item["pic_url"].'" alt="'.$item["product_name"].'"></img>';
+                                    }          
+                                    echo '
                                             </div>
                                             <div class="row">
-                                                <h4>'.$item["product_name"].'</h4>
+                                                <h6>'.$item["product_name"].'</h6>
                                             </div>
                                             <div class="row">
                                                 <h6>$' .$item["price"].'</h6>
@@ -144,63 +150,6 @@
                                     <h3 style="width:100%;text-align:center;padding:50px 0;">No matching content</h3>
                                 ';
                             }
-                        ?>
-                    </div>
-                    <div class="card-deck col-sm-12">
-                            <!-- <div id="product-card" class="card" onclick="navToDetailPage(\''.$item["product_id"].'\')">
-                                <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
-                                <div class="card-block">
-                                    <h4 class="card-title">'.$item["product_name"].'</h4>
-                                    <p class="card-text">'.$item["description"].'</p>
-                                    <p class="card-text">$ '.$item["price"].'</p>
-                                </div>
-                            </div>
-                            <div id="product-card" class="card" onclick="navToDetailPage(\''.$item["product_id"].'\')">
-                                <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
-                                <div class="card-block">
-                                    <h4 class="card-title">'.$item["product_name"].'</h4>
-                                    <p class="card-text">'.$item["description"].'</p>
-                                    <p class="card-text">$ '.$item["price"].'</p>
-                                </div>
-                            </div>
-                            <div id="product-card" class="card" onclick="navToDetailPage(\''.$item["product_id"].'\')">
-                                <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
-                                <div class="card-block">
-                                    <h4 class="card-title">'.$item["product_name"].'</h4>
-                                    <p class="card-text">'.$item["description"].'</p>
-                                    <p class="card-text">$ '.$item["price"].'</p>
-                                </div>
-                            </div> -->
-                        <?php 
-                            // if($products != null && $products->num_rows > 0){
-                            //     $counter = 0;
-                            //     while($item = $products->fetch_assoc()){
-                            //         if($counter % 3 == 0){
-                            //             echo '<div class="row">';
-                            //         }
-                            //         echo '
-                            //             <div id="product-card" class="card col-sm-3" onclick="navToDetailPage(\''.$item["product_id"].'\')">
-                            //                 <img class="card-img-top img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="'.$item["product_name"].'">
-                            //                 <div class="card-block">
-                            //                     <h4 class="card-title">'.$item["product_name"].'</h4>
-                            //                     <p class="card-text">'.$item["description"].'</p>
-                            //                     <p class="card-text">$ '.$item["price"].'</p>
-                            //                 </div>
-                            //             </div>
-                            //         ';
-                            //         if($counter % 3 == 2){
-                            //             echo '</div>';
-                            //         }
-                            //         $counter += 1;
-                            //     }
-                            //     if($counter % 3 < 2){
-                            //         echo '</div>';
-                            //     }
-                            // }else{
-                            //     echo '
-                            //         <h3 style="width:100%;text-align:center;padding:50px 0;">No matching content</h3>
-                            //     ';
-                            // }
                         ?>
                     </div>
                 </div>

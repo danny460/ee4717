@@ -43,7 +43,13 @@
                                 <li class="col-xs-4">
                                     <div class="product-grid-wrapper">
                                         <div class="product-image-wrapper">
-                                            <img class="img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
+                                ';
+                                if($item["pic_url"]===''){
+                                    echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
+                                }else{
+                                    echo '<img class="img-fluid" src="/assets/products/'.$item["pic_url"].'" alt="'.$item["product_name"].'"></img>';
+                                }            
+                                echo '
                                         </div>
                                         <div class="product-title-wrapper">
                                             <h4>'.$item["product_name"].'</h4>

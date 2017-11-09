@@ -28,7 +28,7 @@
     }
 
     function dbGetCartItems($user_id){
-        $stmt = "SELECT p.price * c.quantity as subtotal, p.product_id, p.product_name, pv.color, pv.size, c.item_id, c.product_variant_id, c.quantity
+        $stmt = "SELECT p.pic_url, p.price * c.quantity as subtotal, p.product_id, p.product_name, pv.color, pv.size, c.item_id, c.product_variant_id, c.quantity
             FROM cart_items c 
                 INNER JOIN products p 
                     ON c.product_id = p.product_id 
@@ -41,7 +41,7 @@
     }
 
     function dbGetItemByID($item_id){
-        $stmt = "SELECT p.price * c.quantity as subtotal, c.item_id, c.product_variant_id, c.quantity, p.product_id, p.product_name, pv.color, pv.size  
+        $stmt = "SELECT p.price * c.quantity as subtotal, c.item_id, c.product_variant_id, c.quantity, p.product_id, p.product_name, p.pic_url, pv.color, pv.size  
             FROM cart_items c
             INNER JOIN products p 
                 ON c.product_id = p.product_id 

@@ -44,8 +44,13 @@
                             while($item = $currItems->fetch_assoc()){
                                 echo '
                                     <li class="col-xs-3">
-                                        <div id="order-item-container" class="container">
-                                            <img src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="" class="img-fulid" style="max-width:100%;height:auto;">
+                                        <div id="order-item-container" class="container">';
+                            if($item["pic_url"]===''){
+                                echo '<img class="img-fluid" style="width:100%;height:auto;" src="" alt="'.$item["product_name"].'"></img>';
+                            }else{
+                                echo '<img class="img-fluid" style="max-width:100%;height:auto;" src="/assets/products/'.$item["pic_url"].'" alt="'.$item["product_name"].'"></img>';
+                            }
+                            echo '
                                             <div class="row">
                                                 <div class="col-xs-7">
                                                     <h6 class="text-warning">'.$item["product_name"].'</h6>
