@@ -69,7 +69,7 @@
                         </div>
                         <span class="keyline-horizontal keyline-grey"></span>
                         <div class="container">
-                            <h3>Brand</h3>
+                            <h5>BRAND</h5>
                             <!-- <span class="keyline-horizontal keyline-grey"></span> -->
                             <div class="filter-section" id="filter-brand">
                                 <?php
@@ -78,8 +78,8 @@
                                         while($brand = $brands->fetch_assoc()){
                                             echo '
                                                 <div class="checkbox">
-                                                    <label>
-                                                        <input style="margin-right: 10px" type="checkbox" name="brands[]" value="'.$brand["brand"].'"
+                                                    <label style="text-transform:capitalize;">
+                                                        <input style="margin-right: 10px;" type="checkbox" name="brands[]" value="'.$brand["brand"].'"
                                             ';
                                             if(isset($_POST["brands"])){
                                                 if(in_array($brand["brand"], $_POST["brands"])){
@@ -93,7 +93,7 @@
                                     }
                                 ?>
                             </div>
-                            <h3>Color</h3>
+                            <h5>COLOR</h5>
                             <div class="filter-section" id="filter-color">
                                 <?php
                                     if($colors->num_rows > 0){

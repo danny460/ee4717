@@ -18,8 +18,9 @@
     }
 
     function dbGetPopularItems(){
-        $stmt = "SELECT * FROM products WHERE product_id in (SELECT product_id from cart_items GROUP BY product_id ORDER BY SUM(quantity)) LIMIT 5;";
+        $stmt = "SELECT p.*, sum(quantity) as count FROM cart_items c INNER JOIN products p WHERE c.product_id = p.product_id and c.order_id IS NOT NULL GROUP BY c.product_id ORDER BY SUM(quantity) DESC LIMIT 5;";
         return query($stmt);
+        
     }
 
     function dbAddToCart($user_id, $product_id, $color, $size, $qty){
@@ -48,6 +49,11 @@
                 AND c.item_id = $item_id
                 INNER JOIN product_variants pv 
                     ON c.product_variant_id = pv.product_variant_id;";
+        return query($stmt);
+    }
+
+    function dbRemoveItemByID($item_id){
+        $stmt = "DELETE FROM cart_items WHERE item_id=$item_id";
         return query($stmt);
     }
 

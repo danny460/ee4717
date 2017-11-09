@@ -68,6 +68,7 @@
                                                                 <input type="hidden" name="item_id" value="'.$item["item_id"].'" >
                                                                 <input type="hidden" name="product_id" value="'.$item["product_id"].'">
                                                                 <input id="'.$item["item_id"].'" class="btn btn-secondary" type="button" name="modify" value="edit" onclick="editItem(\'e\', this)">
+                                                                <input id="'.$item["item_id"].'" class="btn btn-secondary" type="button" name="delete" value="&#x2716;" onclick="deleteItem(\'e\', this)">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -112,6 +113,20 @@
             }
         };        
         xmlReq.open("POST", '/include/item-edit.php?edit&item_id=' + src.id);
+        xmlReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlReq.send();
+    }
+
+    function deleteItem(dummy, src, itemId){
+        var listNode = src.parentNode.parentNode.parentNode.parentNode.parentNode;
+        var xmlReq = new XMLHttpRequest();
+        xmlReq.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                console.log(xmlReq.responseText);
+                listNode.remove();
+            }
+        };        
+        xmlReq.open("POST", '/include/item-edit.php?delete&item_id=' + src.id);
         xmlReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlReq.send();
     }  

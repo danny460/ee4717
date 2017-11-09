@@ -1,6 +1,10 @@
 <?php
     include_once("./db.php");
-    if(isset($_REQUEST["edit"]) && isset($_REQUEST["item_id"])){
+    if(isset($_REQUEST["delete"]) && isset($_REQUEST["item_id"])){
+        $item_id = $_REQUEST["item_id"];
+        echo "DELTEING...";
+        dbRemoveItemByID($item_id);
+    }else if(isset($_REQUEST["edit"]) && isset($_REQUEST["item_id"])){
         $item_id = $_REQUEST["item_id"];
         $results = dbGetItemByID($item_id);
         if($results->num_rows === 1){

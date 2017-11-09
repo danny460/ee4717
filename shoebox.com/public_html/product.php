@@ -64,8 +64,9 @@
                                     $item = $product_result->fetch_assoc();
                                     echo '
                                         <div id="title-row" class="row">
-                                            <h1>'.$item['product_name'].'</h1>
-                                            <p>'.$item['description'].'</p>
+                                            <h4>'.$item['product_name'].'</h4>
+                                            <p class="hint-txt">'.$item['description'].'</p>
+                                            <p class="hint-txt"><strong>Unit Price: S$ '.$item['price'].'</strong></p>
                                         <div>
                                     ';
                                 }
@@ -108,7 +109,7 @@
                             ?>
                                 <div id="quantity-row" class="row col-sm-12">
                                     <label>Quantity</label>
-                                    <input class="form-control" style="width: 100px;" type="number" value="" min="1" max="2" name="qty" required>
+                                    <input class="form-control" style="width: 100px;" type="number" value="" min="1" max="99" name="qty" required>
                                 </div>
                                 <div id="submit-row" class="row col-sm-12">
                                     <input class="btn" type="submit" value="add to cart" name="submit">
