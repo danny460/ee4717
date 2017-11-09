@@ -3,7 +3,7 @@ DELETE FROM orders WHERE order_id IS NOT NULL;
 DELETE FROM product_variants WHERE product_variant_id IS NOT NULL;
 DELETE FROM products WHERE product_id IS NOT NULL;
 INSERT INTO products (product_id, product_name, description, brand, gender, price, pic_url) VALUES
-    /*men*/
+/*men*/
     (1, 'NIKE AIR FORCE 1', 'Air Force On The 1st High Tube Couple Sports Shoes 315123 Pure White', 'nike', 'men', 159.00, 'NIKE_AIR_FORCE_1.jpg'),
     /*blue*/
     (2, 'NIKE ROSHERUN', 'Couple Shoes 511882', 'nike', 'men', 76.00,  'NIKE_ROSHERUN.jpg'),
@@ -15,12 +15,17 @@ INSERT INTO products (product_id, product_name, description, brand, gender, pric
     (5, 'Crazy Explosive 2017','Built for dizzying dunks and mean chase-down blocks, these basketball shoes cater to Andrew Wiggins\' high-flying game.', 'adidas', 'men', 259.00,  'BY4468_SL_eCom.jpg'),
     /*white/black/blue*/
     (6, 'Ultraboost All Terrain LTD','The highly responsive boost midsole in these men\'s running shoes delivers an energy-returning ride while a water-repellent upper wraps your foot in support and comfort.', 'adidas', 'men', 379.00,  'CG3003_SL_eCom.jpg'),
-    /*black*/
+    /*black*/ 
+    (7, 'TSUGI BLAZE EVOKNIT ','TSUGI represents the progressive next level of Street Running. The TSUGI Blaze takes cues from the PUMA Blaze of Glory and transforms them into a modern icon that\'s fluent in all things running.', 'puma', 'men', 100.00,  '364408_02.jpeg'),
+    /*white/grey*/
+    (8, 'Vans SK8-HI MTE','Vans The SK8-Hi MTE revamps the legendary Vans high top with additions designed for the elements. Premium weather-resistant leather uppers, warm linings, and a heat retention layer.', 'vans', 'men', 90.00,  'BDSAI321_13D.png'),
+    
 /*women*/
     (51, 'Swift Run','Inspired by throwback sporty style, these women\'s shoes find the perfect balance between comfort and cushioning.', 'adidas', 'women', 149.00,  'CG4145_SL_eCom.jpg'),
     /*black/white*/
     (52, 'Iniki Runner','A celebrated adidas heritage runner gets a fresh update in these women\'s shoes. Built in a two-way stretch mesh and vintage suede upper, the archival look pops with an unexpected shiny mesh tongue.', 'adidas', 'women', 189.00,  'BY9095_SL_eCom.jpg'),
     /*pink*/
+    (53, 'Vans EAP 2.0', 'Vans The Embossed Authentic Platform 2.0 combines the original and now iconic Vans low top style with sturdy canvas and suede uppers, metal eyelets, and platform signature rubber waffle outsoles.', 'vans', 'women', 65.00,'VDAJE_313DS.png'),
 /*kids*/
     (101, 'AIR JORDAN XI RETRO', 'The Air Jordan XI Retro Three-Quarter Toddler Shoe features the plush cushioning, unique lines and durability of the original, delivering the lasting comfort and bold look that made it famous.', 'nike', 'kids', 105.00, 'air-jordan-xi-retro-three-quarter-shoe.jpg'),
     (102, 'Superstar 360 Supercolor', 'A fresh take on the iconic adidas Originals Superstar trainer, these infants\' shoes stand out with bold colour and iridescent 3-Stripes.', 'adidas', 'kids', 69.00, 'BZ0554_SL_eCom.jpg');
@@ -34,22 +39,22 @@ INSERT INTO product_variants (product_id, size, color) VALUES
 (1, 40, "White"),
 (1, 41, "White"),
 (1, 42, "White"),
-(2, 35, "White"),
-(2, 36, "White"),
-(2, 37, "White"),
-(2, 38, "White"),
-(2, 39, "White"),
-(2, 40, "White"),
-(2, 41, "White"),
-(2, 42, "White"),
-(2, 35, "Red"),
-(2, 36, "Red"),
-(2, 37, "Red"),
-(2, 38, "Red"),
-(2, 39, "Red"),
-(2, 40, "Red"),
-(2, 41, "Red"),
-(2, 42, "Red"),
+(2, 35, "Black"),
+(2, 36, "Black"),
+(2, 37, "Black"),
+(2, 38, "Black"),
+(2, 39, "Black"),
+(2, 40, "Black"),
+(2, 41, "Black"),
+(2, 42, "Black"),
+(2, 35, "Grey"),
+(2, 36, "Grey"),
+(2, 37, "Grey"),
+(2, 38, "Grey"),
+(2, 39, "Grey"),
+(2, 40, "Grey"),
+(2, 41, "Grey"),
+(2, 42, "Grey"),
 (3, 35, "Grey"),
 (3, 36, "Grey"),
 (3, 37, "Grey"),
@@ -98,6 +103,30 @@ INSERT INTO product_variants (product_id, size, color) VALUES
 (6, 40, "Black"),
 (6, 41, "Black"),
 (6, 42, "Black"),
+(7, 35, "Grey"),
+(7, 36, "Grey"),
+(7, 37, "Grey"),
+(7, 38, "Grey"),
+(7, 39, "Grey"),
+(7, 40, "Grey"),
+(7, 41, "Grey"),
+(7, 42, "Grey"),
+(7, 35, "White"),
+(7, 36, "White"),
+(7, 37, "White"),
+(7, 38, "White"),
+(7, 39, "White"),
+(7, 40, "White"),
+(7, 41, "White"),
+(7, 42, "White"),
+(8, 35, "Green"),
+(8, 36, "Green"),
+(8, 37, "Green"),
+(8, 38, "Green"),
+(8, 39, "Green"),
+(8, 40, "Green"),
+(8, 41, "Green"),
+(8, 42, "Green"),
 
 (51, 35, "Black"),
 (51, 36, "Black"),
@@ -123,6 +152,11 @@ INSERT INTO product_variants (product_id, size, color) VALUES
 (52, 40, "Pink"),
 (52, 41, "Pink"),
 (52, 42, "Pink"),
+(53, 35, "Yellow"),
+(53, 36, "Yellow"),
+(53, 37, "Yellow"),
+(53, 38, "Yellow"),
+(53, 39, "Yellow"),
 
 (101, 35, "White"),
 (101, 36, "White"),
