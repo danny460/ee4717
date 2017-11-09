@@ -49,7 +49,9 @@ input.btn:hover {
 input.btn:focus {
     outline: 0;
 }
-
+.text-white {
+    color: white;
+}
 .nav-link {
     color: black;
     font-weight: lighter;
@@ -102,11 +104,9 @@ ul {
 .inline-block{
     display: inline-block;
 }
-main {
+main, div.container {
     width: 100%;
-}
-div.container {
-    width: 100%;
+    max-width: 100%;
 }
 .bg-red {
     background-color: orangered;
@@ -129,7 +129,7 @@ div.container {
 
 .selection-cube {
     display: inline-block;
-    margin-right: 8px;
+    margin: 5px;
     width: 30px;
     height: 30px;
     border-radius:4px;
@@ -206,7 +206,7 @@ Navbar
 /**==================================
 Hero
 ==================================**/
-section#hero{
+#hero{
     height: auto;
     background: url("/assests/hero.bg");
 }
@@ -220,8 +220,9 @@ section#hero{
 }
 .hero-title-wrapper {
     position: absolute;
-    top: 120px;
-    left: 60px;
+    top: 130px;
+    left: 10%;
+    width: 300px;
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
@@ -235,30 +236,8 @@ section#hero{
 /**==================================
 Intro
 ==================================**/
-.intro {
-    height: auto;
-    background-color: white;
-    border-width: 1 0 0 0;
-    border-style: solid;
-    border-color: lightgray;
-}
-
-.intro-image-wrapper {
-    display: inline-block;
-    width: 300px;
-    height: 100%;
-    overflow: hidden;
-}
-
-.intro-image {
-    width: 300px;
-}
-
-ul.product-gallery-wrapper {
-    padding: 20px 0px;
-    white-space: nowrap;
-    width: 100%;
-    overflow-x: auto;
+#feature-product {
+    margin-top: 50px;
 }
 
 /**==================================
@@ -440,7 +419,9 @@ Cart Sid Nav
     border-style: solid;
     border-color: lightgray;
 }
-
+#edit-row{
+    padding: 5px 15px;
+}
 /**=================================
 Shopping List Page
 ==================================**/
@@ -567,4 +548,29 @@ input[type="text"], input[type="email"], input[type="password"] {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+/*====================
+        ORDER
+=======================*/
+#current-order{
+    padding: 50px;
+}
+#order-info, #order-gallery{
+    margin: 20px auto;   
+}
+#order-info{
+    padding: 20px;
+    height: -webkit-fill-available;
+    border-radius: 5px;
+}
+ul.horizontal-slide {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+ul.horizontal-slide li[class*="col"] {
+    display: inline-block;
+    float: none;
 }

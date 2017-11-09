@@ -17,8 +17,13 @@
         return db_connect()->query($stmt);
     }
 
+    function dbGetPopularItems(){
+        $stmt = "SELECT * FROM products WHERE product_id in (SELECT product_id from cart_items GROUP BY product_id ORDER BY SUM(quantity)) LIMIT 5;";
+        return query($stmt);
+    }
+
     function dbAddToCart($user_id, $product_id, $color, $size, $qty){
-        $insert_query = "INSERT INTO cart_items (user_id, product_id , product_variant_id, quantity, ordered) VALUES ('$user_id', $product_id, (SELECT product_variant_id FROM product_variants WHERE product_id = $product_id AND color = '$color' AND size = $size LIMIT 1), $qty, false);";
+        $insert_query = "INSERT INTO cart_items (user_id, product_id , product_variant_id, quantity) VALUES ('$user_id', $product_id, (SELECT product_variant_id FROM product_variants WHERE product_id = $product_id AND color = '$color' AND size = $size LIMIT 1), $qty);";
         return query($insert_query);
     }
 
@@ -28,15 +33,11 @@
                 INNER JOIN products p 
                     ON c.product_id = p.product_id 
                     AND c.user_id = '$user_id' 
-                    AND c.ordered = false 
+                    AND c.order_id IS NULL 
                     INNER JOIN product_variants pv 
                         ON c.product_variant_id = pv.product_variant_id;
         ";
         return query($stmt);
-    }
-
-    function dbGetCartTotal($user_id){
-
     }
 
     function dbGetItemByID($item_id){
@@ -50,9 +51,27 @@
         return query($stmt);
     }
 
-    function dbOrderItemsInCart($user_id){
-        $update_query = "UPDATE cart_items SET ordered = true WHERE user_id = '$user_id' AND ordered = false";
-        return query($update_query);
+    function dbPlaceOrder($user_id){
+        $order_id = _genOrderId();
+        $create_order = "INSERT INTO orders (order_id, user_id) VALUES ('$order_id', '$user_id');";
+        $update_query = "UPDATE cart_items SET order_id = '$order_id' WHERE user_id = '$user_id' AND order_id IS NULL;";
+        if(query($create_order)){
+            if(query($update_query)){
+                _sendMail($user_id, $order_id);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function getCartSubtotal($user_id){
+        $stmt = "SELECT SUM(c.quantity * p.price) as total from cart_items c INNER JOIN products p WHERE c.product_id = p.product_id AND user_id = '$user_id' AND order_id IS NULL GROUP BY order_id;";
+        $res = query($stmt);
+        if($res->num_rows==1){
+            $obj = $res->fetch_object();
+            return $obj->total;
+        }
+        return 0;
     }
 
     function dbGetColorsForProduct($product_id){
@@ -68,16 +87,18 @@
     function dbCartItemUpdate($item_id, $color, $size, $quantity){
         $product_id = _getProductIdForCartItem($item_id);
         if($product_id !== null){
-            echo "<h6>UPDATING</h6>";
             $stmt = "UPDATE cart_items
                 SET product_variant_id = (SELECT product_variant_id FROM product_variants WHERE color='$color' AND size='$size' AND product_id = $product_id LIMIT 1),
                     quantity = $quantity
                 WHERE item_id = $item_id;
             ";
-            echo "<h6>UPDATING:".query($stmt)."</h6>";
             return query($stmt);
         }
         return null;
+    }
+
+    function _genOrderId(){
+        return uniqid("odr-");
     }
 
     function _getProductIdForCartItem($item_id){
@@ -89,4 +110,25 @@
         }
         return null;
     }
+
+    function _sendMail($user_id, $order_id){
+        $stmt = "SELECT * from users WHERE user_id = '$user_id';";
+        $user = query($stmt)->fetch_object();
+        $subject = $order_id."-Your Order Has Been Placed";
+        $msg = "
+            Dear ".$user->username.", \n\n
+            Your order from shoebox.com has been placed. Your Order Number is ".$order_id." \n
+            You can login and check your order status. \n\n
+
+            Thank you for shopping with us!\n\n
+
+            Best, \n
+            SHOEBOX Customer Service Team \n
+            Email: cs@shoebox.com \n
+            TEL: +65 66668888 \n
+        ";
+        $to = $user->email;
+        mail($to, $subject, $msg);
+    }
+
 ?>

@@ -2,10 +2,7 @@
     session_start();
     include_once("./include/db.php");    
     $mysqli = db_connect();
-    $query_str = "SELECT * FROM items WHERE for=%who% LIMIT 5";
-    $men_featured_products = $mysqli->query(str_replace("%who%","men",$query_str));
-    $women_featured_products = $mysqli->query(str_replace("%who%","men",$query_str));
-    $kids_featured_products = $mysqli->query(str_replace("%who%","men",$query_str));
+    $results = dbGetPopularItems();
 ?>
 <head>
     <meta charset="UTF-8">
@@ -31,43 +28,41 @@
                 <p class="text-white">From strength to style, cool colors to ignite your workout or weekend.</p>
             </div>
         </div>
-        <section class="intro" id="feature-product">
-            <ul class="product-gallery-wrapper inline">
-            <?php
-                for ($i = 1; $i <= 8; $i++) {
-                    echo '
-                    <li>
-                        <div class="product-grid-wrapper">
-                            <div class="product-image-wrapper">
-                                <img class="img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
-                            </div>
-                            <div class="product-title-wrapper">
-                                <h4>product name</h4>
-                            </div>
-                            <div class="product-title-wrapper">
-                                <h6>$ 100.0</h6>
-                            </div>
-                        </div>
-                    </li>
-                    ';
-                }
-            ?>
-            </ul>
-        </section>
-        <!-- <section class="intro" id="women-intro">
-            <div class="intro-image-wrapper float-right">
-                <div class="intro-image">
-                    <img src="/assets/men.jpg" alt="Men">
+        <div class="container" id="feature-product">
+            <div class="col-xs-12">
+                <div class="row">
+                    <h3>Popular Products</h3>    
+                    <span class="keyline-horizontal keyline-grey"></span>
+                </div>
+                <div class="row">
+                    <ul class="horizontal-slide">
+                    <?php
+                        if($results != null && $results->num_rows > 0){
+                            while($item = $results->fetch_assoc()){
+                                echo '
+                                <li class="col-xs-4">
+                                    <div class="product-grid-wrapper">
+                                        <div class="product-image-wrapper">
+                                            <img class="img-fluid" src="/assets/products/air-jordan-1-retro-high-flyknit-shoe.jpg" alt="product name"></img>
+                                        </div>
+                                        <div class="product-title-wrapper">
+                                            <h4>'.$item["product_name"].'</h4>
+                                        </div>
+                                        <div class="product-title-wrapper">
+                                            <h4>$ '.$item["price"].'</h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                ';
+                            }
+                        }
+                    ?>
+                    </ul>
                 </div>
             </div>
+            
+            
         </section>
-        <section class="intro" id="kids-intro">
-            <div class="intro-image-wrapper">
-                <div class="intro-image">
-                    <img src="/assets/men.jpg" alt="Men">
-                </div>
-            </div>
-        </section> -->
     </main>
     <?php
         include "partials/cart.php";

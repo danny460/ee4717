@@ -19,19 +19,19 @@
                 if ($isLoggedIn){
                     if (!$hasItem){
                         echo '
-                            <h2>Shopping Cart</h2>
+                            <h4>Shopping Cart</h4>
                             <p><span class="hint-txt">Your shopping cart is empty </span>😢</p>
                         ';
                     }else{
                         echo '
-                            <h3>
+                            <h4>
                                 Shopping Cart <small>('.$items->num_rows.')</small>
-                            </h3>
+                            </h4>
                         ';
                     }
                 }else{
                     echo '
-                        <h2>Shopping Cart</h2>
+                        <h4>Shopping Cart</h4>
                         <p><span class="hint-txt">Please <a href="/login.php">Login</a> to view shopping cart</span></p>  
                     ';
                 }

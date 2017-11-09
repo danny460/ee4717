@@ -18,7 +18,7 @@
     $product_query = "SELECT * FROM products WHERE product_id = $product_id;";
     $color_query = "SELECT DISTINCT color FROM product_variants WHERE product_id = $product_id;";
     $size_query = "SELECT DISTINCT size FROM product_variants WHERE product_id = $product_id ORDER BY size;";
-    $product_result = $mysqli->query($product_query);
+    
     $color_result = $mysqli->query($color_query);
     $size_result = $mysqli->query($size_query);
     
@@ -28,7 +28,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="/js/script.js"></script>
-    <title>SHOEBOX | Shop</title>
+    <?php
+        $product_result = $mysqli->query($product_query);
+        $item = $product_result->fetch_assoc();
+        echo '<title>SHOEBOX | '.$item["product_name"].'</title>';
+    ?>
 </head>
 <body>
     <main id="main">
@@ -49,6 +53,7 @@
                     <div id="item-details-container" class="col-sm-8">
                             <?php echo  '<form action="product.php?id='.$product_id.'" method="post">'; ?>
                             <?php
+                                $product_result = $mysqli->query($product_query);
                                 if($product_result->num_rows == 1){
                                     $item = $product_result->fetch_assoc();
                                     echo '

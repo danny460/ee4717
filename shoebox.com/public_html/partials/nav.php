@@ -18,8 +18,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" d="navbarDropdownMenuLink" data-toggle="dropdown">User</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="">Profile</a>
-                            <a class="dropdown-item" href="">Orders</a>
+                            <a class="dropdown-item" href="/order.php">Orders</a>
                             <a class="dropdown-item" href="/include/session.php?logout">Logout</a>
                         </div>
                     </li>

@@ -9,7 +9,7 @@
     }
     // products
     $products = null;
-    $stmt = "SELECT * FROM products WHERE gender = '".$for."';";
+    $stmt = "SELECT * FROM products WHERE gender = '$for';";
     $brands_stmt = "SELECT DISTINCT brand FROM products";
     $color_stmt = "SELECT DISTINCT color FROM product_variants";
     // filter
@@ -31,7 +31,6 @@
             }
         }
         $filterStmt = $filterStmt.";";
-        echo '<h1>QUERY: '.$filterStmt.'</h1>';
         $products = $mysqli->query($filterStmt);
     }else{
         $products = $mysqli->query($stmt);
@@ -46,7 +45,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="/js/script.js"></script>
-    <link rel="stylesheet" href="/css/styles.css">
     <title>SHOEBOX | Shop</title>
 </head>
 <body>
@@ -57,7 +55,7 @@
         <div class="container" style="max-width: 100%;">
             <div class="col-xl-12">
                 <div class="col-sm-3 float-left">
-                    <form action="/shop.php?for=<?php echo $for;?>'" method="post">
+                    <form action="/shop.php?for=<?php echo $for;?>" method="post">
                         <div id="filter-title-row" class="row">    
                             <div class="col-sm-6">
                                 <h3 class="headline">Filters</h3>
@@ -79,7 +77,9 @@
                                         
                                         while($brand = $brands->fetch_assoc()){
                                             echo '
-                                                <div class="check-box-wrapper"><label><input type="checkbox" name="brands[]" value="'.$brand["brand"].'"
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input style="margin-right: 10px" type="checkbox" name="brands[]" value="'.$brand["brand"].'"
                                             ';
                                             if(isset($_POST["brands"])){
                                                 if(in_array($brand["brand"], $_POST["brands"])){
@@ -94,7 +94,6 @@
                                 ?>
                             </div>
                             <h3>Color</h3>
-                            <!-- <span class="keyline-horizontal keyline-grey"></span> -->
                             <div class="filter-section" id="filter-color">
                                 <?php
                                     if($colors->num_rows > 0){

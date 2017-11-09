@@ -7,6 +7,7 @@ CREATE TABLE products (
     brand VARCHAR(20) NOT NULL,
     gender ENUM('men','women','kids') NOT NULL,
     price FLOAT(6,2) NOT NULL,
+    pic_url VARCHAR(64),
     CONSTRAINT pk_product_id PRIMARY KEY (product_id)
 );
 
@@ -53,29 +54,26 @@ CREATE TABLE users (
     CONSTRAINT uc_email UNIQUE (email)
 );
 
+CREATE TABLE orders (
+    order_id VARCHAR(17) NOT NULL,
+    user_id VARCHAR(36),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT pk_order_id PRIMARY KEY (order_id),
+    CONSTRAINT fk_user_id_order FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
 
 CREATE TABLE cart_items (
     item_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id VARCHAR(36),
+    order_id VARCHAR(17),
     product_id SMALLINT UNSIGNED,
     product_variant_id SMALLINT UNSIGNED,
     quantity TINYINT UNSIGNED,
-    ordered BOOLEAN,
     CONSTRAINT pk_item_id PRIMARY KEY (item_id),
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT fk_order_id FOREIGN KEY (order_id) REFERENCES orders(order_id),
     CONSTRAINT fk_product_id_cart FOREIGN KEY (product_id) REFERENCES products(product_id),
     CONSTRAINT fk_product_variant_id FOREIGN KEY (product_variant_id) REFERENCES product_variants(product_variant_id)
 );
 
-/*
-    NOT VALID BELOW
-*/
-
-SELECT p.product_id, p.product_name, pv.color, pv.size, c.item_id, c.product_variant_id, c.quantity
-    FROM cart_items c 
-        INNER JOIN products p 
-            ON c.product_id = p.product_id 
-            AND c.user_id = '14fada9a-bbe5-11e7-8f05-228b52f8e699' 
-            AND c.ordered = false 
-            INNER JOIN product_variants pv 
-                ON c.product_variant_id = pv.product_variant_id;
+SELECT SUM(c.quantity * p.price) from cart_items c INNER JOIN products p WHERE c.product_id == p.produc GROUP BY order_id;
