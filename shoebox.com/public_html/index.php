@@ -40,7 +40,8 @@
                         if($results != null && $results->num_rows > 0){
                             while($item = $results->fetch_assoc()){
                                 echo '
-                                <li class="col-xs-4">
+                                <li class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <a href="/product.php?id='.$item["product_id"].'">
                                     <div class="product-grid-wrapper">
                                         <div class="product-image-wrapper">
                                 ';
@@ -57,7 +58,11 @@
                                         <div class="row col-xs-12">
                                             <h6 style="font-size: 12px;">$ '.$item["price"].'</h6>
                                         </div>
+                                        <div class="row col-xs-12">
+                                            <h6 class="text-warning">'.$item["count"].' items sold 🔥</h6>
+                                        </div>
                                     </div>
+                                    </a>
                                 </li>
                                 ';
                             }
