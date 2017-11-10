@@ -3,7 +3,10 @@
     include_once("./include/db.php");
     $mysqli = db_connect();
     // gender filter
-    $for = $_GET["for"];
+    $for = null;
+    if(isset($_GET["for"])){
+        $for = $_GET["for"];
+    }
     if ($for == null) {
         $for = "men";
     }
